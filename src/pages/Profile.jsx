@@ -56,7 +56,7 @@ function Profile({ initialSize }) {
   }, [isResizing]);
 
   return (
-    <div className="ml-48 mt-16 p-5 flex gap-6 w-full">
+    <div className="pl-54 pr-4 mt-16 p-5 flex gap-6" style={{width:"99vw"}}>
       {/* User Posts Section */}
       <div
         style={{ width: `${size}px` }}
