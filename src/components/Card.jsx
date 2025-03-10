@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import "../App.css";
 
-const Card = () => {
+const Card = (initialSize) => {
+  const [size, setSize] = useState(initialSize);
+  
   const images = [
     "images/ozzy.jpg",
     "images/ozzybaby.jpg",
@@ -15,7 +18,8 @@ const Card = () => {
 
 
   return (
-    <div className="flex-1 border-2 border-black p-4 rounded">
+    
+    <div style={{width: size}} className="flex-1 border-2 border-black p-4 rounded">
      <h2 className="text-xl font-bold mb-4 text-primary">User's Posts</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {images.map((image, index) => (
