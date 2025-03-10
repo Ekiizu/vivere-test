@@ -41,7 +41,8 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="container ml-165 mt-70">
+        <div className="ml-150 mt-70">
+            <div className="flex-1 border-2 border-black p-4 rounded">
             <h1 className="text-xl font-bold mt-2 text-primary">Login</h1>
             <form className="box" onSubmit={handleSubmit}>
                 <div className="field">
@@ -81,16 +82,18 @@ const LoginForm = () => {
                         </button>
                     </div>
 
-                            do u wanna register ? register now !!
                             <button
-                            className="mt-3 px-4 py-2 bg-primary text-white rounded-lg"
-                            onClick={() => navigate("/Register")}
-                        >
-                            Register
-                        </button>
+                                className="mt-3 px-4 py-2 bg-primary text-white rounded-lg"
+                                onClick={() => navigate("/Register")}
+                            >
+                                Register
+                            </button>       
+                          
                 </div>
             </form>
         </div>
+        </div>
+        
     );
 };
 

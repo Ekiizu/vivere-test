@@ -49,13 +49,14 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="container ml-165 mt-70">
-            <h1 className="title is-3 has-text-centered">Register</h1>
+        <div className="ml-150 mt-50">
+            <div className="flex-1 border-2 border-black p-4 rounded">
+            <h1 className="text-xl font-bold mt-2 text-primary">Register</h1>
             <form onSubmit={handleSubmit} className="box">
                 {error && <div className="notification is-danger">{error}</div>} 
                 
                 <div className="field">
-                    <label className="label">username</label>
+                    <label className="label">Username ! </label>
                     <div className="control">
                         <input
                             className="input"
@@ -119,13 +120,16 @@ const RegisterForm = () => {
                 </div>
                 <div className="field">
                     <div className="control">
-                        <button className="button is-success is-fullwidth" type="submit">
+                        <button className="mt-3 px-4 py-2 bg-primary text-white rounded-lg" type="submit">
                             Submit
                         </button>
                     </div>
                 </div>
+                
             </form>
         </div>
+        </div>
+        
     );
 };
 
