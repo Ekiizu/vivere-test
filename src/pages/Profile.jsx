@@ -56,7 +56,7 @@ function Profile({ initialSize }) {
   }, [isResizing]);
 
   return (
-    <div className="m-48 mt-16 p-5 flex gap-6 w-full">
+    <div className="ml-48 mt-16 p-5 flex gap-6 w-full">
       {/* User Posts Section */}
       <div
         style={{ width: `${size}px` }}
@@ -77,11 +77,11 @@ function Profile({ initialSize }) {
       </div>
 
       {/* Resizer Divider */}
-      {/* <div
+      <div
         style={{ width: "10px", cursor: "ew-resize" }}
         onMouseDown={handleMouseDown}
         className="border-2 bg-gray-500"
-      /> */}
+      />
 
       {/* Profile Section with Banner */}
       <div
