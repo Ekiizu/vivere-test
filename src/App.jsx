@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile initialSize={window.innerWidth * 0.3} />} />
             
             <Route path='/login' element={<LoginForm />} />
             <Route path='/register' element={<RegisterForm />} />
