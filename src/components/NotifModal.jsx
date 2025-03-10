@@ -16,6 +16,7 @@ export default function NotifModal({ isOpen, toggleModal }) {
           <p className="py-3">Press ESC key or click the button below to close</p>
           <div className="modal-action">
             <button className="btn" onClick={toggleModal}>Close</button>
+            test
           </div>
         </div>
       </dialog>
