@@ -17,7 +17,7 @@ const LoginForm = () => {
         e.preventDefault();
         
         axios
-        .post(`https://fed-medical-clinic-api.vercel.app/login`, form)
+        .post(`https://viverebackend-main-girysq.laravel.cloud/api/login`, form)
         .then((res) => {
             console.log(res);
 
@@ -80,6 +80,14 @@ const LoginForm = () => {
                             Login
                         </button>
                     </div>
+
+                            do u wanna register ? register now !!
+                            <button
+                            className="mt-3 px-4 py-2 bg-primary text-white rounded-lg"
+                            onClick={() => navigate("/Register")}
+                        >
+                            Register
+                        </button>
                 </div>
             </form>
         </div>

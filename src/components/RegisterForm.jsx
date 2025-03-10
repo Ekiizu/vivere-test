@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
@@ -8,10 +8,11 @@ const RegisterForm = () => {
     const { login } = useAuth();
 
     const [form, setForm] = useState({
-        first_name: "",
-        last_name: "",
+        username: "",
         email: "",
         password: "",
+        date_of_birth: "",
+        bio: "",
     });
 
     const [error, setError] = useState(null); 
@@ -23,7 +24,7 @@ const RegisterForm = () => {
         setError(null);
 
         axios
-            .post(`https://fed-medical-clinic-api.vercel.app/register`, form)
+            .post(`https://viverebackend-main-girysq.laravel.cloud/api/register`, form)
             .then((res) => {
                 console.log(res);
 
@@ -48,37 +49,25 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container ml-165 mt-70">
             <h1 className="title is-3 has-text-centered">Register</h1>
             <form onSubmit={handleSubmit} className="box">
                 {error && <div className="notification is-danger">{error}</div>} 
                 
                 <div className="field">
-                    <label className="label">First Name</label>
+                    <label className="label">username</label>
                     <div className="control">
                         <input
                             className="input"
                             onChange={handleChange}
-                            value={form.first_name}
+                            value={form.username}
                             type="text"
-                            name="first_name"
-                            placeholder="Ryan"
+                            name="username"
+                            placeholder="Emma"
                         />
                     </div>
                 </div>
-                <div className="field">
-                    <label className="label">Last Name</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            onChange={handleChange}
-                            value={form.last_name}
-                            type="text"
-                            name="last_name"
-                            placeholder="Crinnion"
-                        />
-                    </div>
-                </div>
+              
                 <div className="field">
                     <label className="label">Email</label>
                     <div className="control">
@@ -88,7 +77,7 @@ const RegisterForm = () => {
                             value={form.email}
                             type="email"
                             name="email"
-                            placeholder="holymoly@frontend.com"
+                            placeholder="test@vivere.com"
                         />
                     </div>
                 </div>
@@ -101,6 +90,30 @@ const RegisterForm = () => {
                             value={form.password}
                             type="password"
                             name="password"
+                        />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Date Of Birth</label>
+                    <div className="control">
+                        <input
+                            className="input"
+                            onChange={handleChange}
+                            value={form.date_of_birth}
+                            type="date"
+                            name="date_of_birth"
+                        />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Bio</label>
+                    <div className="control">
+                        <input
+                            className="input"
+                            onChange={handleChange}
+                            value={form.bio}
+                            type="text"
+                            name="bio"
                         />
                     </div>
                 </div>

@@ -33,13 +33,13 @@ function Profile() {
       </div>
 
       {/* Profile Section with Banner */}
-      <div className="w-80 border-2 border-black rounded ">
+      <div className="w-125 border-2 border-black rounded ">
         {/* Banner Section */}
         <div className="banner">
           <img
             src="images/ozzybed.jpg"
             alt="Banner"
-            className="h-24 w-full object-cover rounded-t"
+            className="h-48 w-full object-cover rounded-t"
           />
           {/* <button className="absolute bottom-1 right-2 text-xs bg-white px-2 py-1 rounded shadow">
             Change Banner
