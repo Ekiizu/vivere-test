@@ -16,6 +16,7 @@ export default function NotifModal({ isOpen, toggleModal }) {
           <p className="py-3">heyyyy :3</p>
           <div className="modal-action">
             <button className="btn" onClick={toggleModal}>Close</button>
+            test
           </div>
         </div>
       </dialog>

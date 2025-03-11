@@ -8,6 +8,9 @@ function Profile() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null); // Store user data
   const [banner, setBanner] = useState(""); // Store banner GIF
+  const [size, setSize] = useState(450);
+  const [isResizing, setIsResizing] = useState(false);
+  const [startX, setStartX] = useState(0); // Track initial mouse position
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -51,16 +54,58 @@ function Profile() {
     "images/ozbox.jpg",
   ];
 
+   // Start resizing
+   const handleMouseDown = (e) => {
+    setIsResizing(true);
+    setStartX(e.clientX); // Record the initial position of the mouse
+    document.body.style.userSelect = "none"; // disables selecting
+  };
+
+  // Resizing function
+  const handleMouseMove = (e) => {
+    if (!isResizing) return;
+
+    const movement = e.clientX - startX; // Difference from the starting position
+    const newSize = size - movement; // Add the movement to the initial size
+
+    // constrain resizing
+    if (newSize > 450 && newSize < window.innerWidth * 0.4) {
+      console.log(newSize);
+      setSize(newSize);
+    }
+  };
+
+  // Stop resizing
+  const handleMouseUp = () => {
+    setIsResizing(false);
+    document.body.style.userSelect = "auto"; // re-enables selecting
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isResizing]);
+
   return (
   <div className="ml-48 mt-16 p-5 flex gap-6">
   {/* User Posts Section */}
   
-  <Card></Card>
+  <Card initialSize={200}></Card>
   
-
+      {/* Resizer Divider */}
+      <div
+        style={{ width: "10px", cursor: "ew-resize" }}
+        onMouseDown={handleMouseDown}
+        className="border-2 bg-gray-500"
+      />
 
       {/* Profile Section with Banner */}
-      <div className="w-140 border-2 border-black rounded">
+      <div style={{ width: `${size}px` }} className="w-140 border-2 border-black rounded">
        <ProfileComponent> </ProfileComponent>
       </div>
     </div>
