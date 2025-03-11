@@ -95,7 +95,8 @@ function Profile() {
   <div className="ml-48 mt-16 p-5 flex gap-6">
   {/* User Posts Section */}
   
-  <Card initialSize={200}></Card>
+
+  <Card initialSize={450} isProfile={true}></Card>
   
       {/* Resizer Divider */}
       <div

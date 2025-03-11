@@ -1,6 +1,7 @@
 import React, { useState } from "react"; 
 import NotifModal from "./NotifModal";
 import { Link } from "react-router-dom";
+import handleModal from "./PostModal";
 import "../App.css";
 
 const Sidebar = () => {
@@ -37,9 +38,16 @@ const Sidebar = () => {
             <i className="fas fa-bell fa-xl" />
           </button>
 
-          <Link to="/post" className="flex items-center justify-center btn btn-ghost">
+          <button 
+            onClick={console.log("help")}
+            className="flex items-center justify-center btn btn-ghost"
+          >
             <i className="fas fa-square-plus fa-xl" />
-          </Link>
+
+          </button>
+
+          {/* <Link to="/post" className="flex items-center justify-center btn btn-ghost">
+          </Link> */}
         </div>
       </div>
 
