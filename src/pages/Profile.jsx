@@ -100,13 +100,13 @@ function Profile() {
   
       {/* Resizer Divider */}
       <div
-        style={{ width: "10px", cursor: "ew-resize" }}
+        style={{ width: "5px", cursor: "ew-resize" }}
         onMouseDown={handleMouseDown}
-        className="border-2 bg-gray-500"
+        className="border-1 border-neutral bg-primary"
       />
 
       {/* Profile Section with Banner */}
-      <div style={{ width: `${size}px` }} className="w-140 border-2 border-black rounded">
+      <div style={{ width: `${size}px` }} className="w-140 border-2 border-primary rounded">
        <ProfileComponent> </ProfileComponent>
       </div>
     </div>

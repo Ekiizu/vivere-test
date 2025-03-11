@@ -23,7 +23,7 @@ const Card = (initialSize, isProfile) => {
   // why is initial size an object???????
   if (initialSize.isProfile) {
     return(
-    <div style={{width: size}} className="flex-1 border-2 border-black p-4 rounded">
+    <div style={{width: size}} className="flex-1 border-2 border-primary p-4 rounded">
      <h2 className="text-xl font-bold mb-4 text-primary">User's Posts</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {images.map((image, index) => (
@@ -50,7 +50,7 @@ const Card = (initialSize, isProfile) => {
   else {
   return (
     
-    <div style={{width: size}} className="flex-1 border-2 border-black p-4 rounded">
+    <div style={{width: size}} className="flex-1 border-2 border-primary p-4 rounded">
      {/* <h2 className="text-xl font-bold mb-4 text-primary">User's Posts</h2> */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {images.map((image, index) => (

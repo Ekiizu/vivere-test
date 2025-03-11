@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: retro --default, coffee --prefersdark, fantasy;
+  themes: dracula --default, coffee --prefersdark, fantasy;
 }
 
 /* Ensure the app takes up the full screen */
