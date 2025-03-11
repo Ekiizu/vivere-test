@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; 
 import "../App.css";
 
 const ProfileComponent = () => {
+  const navigate = useNavigate(); 
+
   const images = [
     "images/ozzy.jpg",
     "images/ozzybaby.jpg",
@@ -30,7 +33,7 @@ const ProfileComponent = () => {
 
       <div className="p-6 text-center">
         {/* User Info */}
-        <h1 className="text-2xl font-bold">Ekiizu </h1>
+        <h1 className="text-2xl font-bold">Ekiizu</h1>
         <h3 className="text">@Ekiizu</h3>
 
         {/* Edit and Logout Buttons */}
@@ -38,7 +41,10 @@ const ProfileComponent = () => {
           <button className="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-yellow-600 transition">
             Edit
           </button>
-          <button className="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-yellow-600 transition">
+          <button
+            className="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
+            onClick={() => navigate("/login")} 
+          >
             Logout
           </button>
         </div>
@@ -52,24 +58,11 @@ const ProfileComponent = () => {
 
         {/* Bio Section */}
         <div className="mt-6 p-4 border-t">
-          <p className="text text-sm">HELLLOOOO!!!!!!!!!!!</p>
+          <p className="text-sm">HELLLOOOO!!!!!!!!!!!</p>
         </div>
-
-        {/* Spotify Embed */}
-        {/* <div className="mt-4">
-          <iframe
-            src="https://open.spotify.com/embed/track/32NyN0Tby1YpKObfd8nrzN?utm_source=generator"
-            width="100%"
-            height="80"
-            frameBorder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            className="rounded-lg shadow-md"
-          ></iframe>
-        </div> */}
       </div>
     </div>
   );
 };
 
 export default ProfileComponent;
-

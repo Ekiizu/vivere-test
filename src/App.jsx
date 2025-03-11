@@ -14,16 +14,45 @@ function App() {
 
   const isLoginPage = location.pathname === "/login";
 
+  if (!isLoginPage) {
+    return (
+      <AuthProvider>
+        <div className="flex">
+          { !isLoginPage && <Sidebar/> } 
+          {/* no sidebar on login page */}
+          <div className="w-full">
+          { !isLoginPage && <Navbar/> } 
+          {/* no navbar either */}
+  
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="/profile" element={<Profile />} />
+              
+              <Route path='/login' element={<LoginForm />} />
+              <Route path='/register' element={<RegisterForm />} />
+            </Routes>
+            
+          </div>
+          
+        </div>
+      </AuthProvider>
+      
+    );
+    
+  }
+  else {
   return (
     <AuthProvider>
       <div className="flex">
-        { !isLoginPage && <Sidebar /> } 
+        {/* { !isLoginPage && <Sidebar/> }  */}
         {/* no sidebar on login page */}
         <div className="w-full">
-        { !isLoginPage && <Navbar /> } 
+        { !isLoginPage && <Navbar/> } 
         {/* no navbar either */}
 
-          <Navbar />
+          {/* <Navbar /> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
@@ -39,6 +68,7 @@ function App() {
     </AuthProvider>
     
   );
+}
 }
 
 

@@ -3,11 +3,11 @@
   themes: retro --default, coffee --prefersdark, fantasy;
 }
 
-/* Ensure the app takes up the full screen */
+
 #root {
   min-height: 100vh;
-  display: flex;
-  /* Light background */
+  /* display: flex; */
+
 }
 
 /* Full-screen sidebar */
