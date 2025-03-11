@@ -13,8 +13,9 @@ function App() {
   const location = useLocation(); 
 
   const isLoginPage = location.pathname === "/login";
+  const isRegisterPage = location.pathname === "/register"
 
-  if (!isLoginPage) {
+  // if (!isLoginPage) {
     return (
       <AuthProvider>
         <div className="flex">
@@ -24,7 +25,7 @@ function App() {
           { !isLoginPage && <Navbar/> } 
           {/* no navbar either */}
   
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/profile/:id" element={<Profile />} />
@@ -41,34 +42,34 @@ function App() {
       
     );
     
-  }
-  else {
-  return (
-    <AuthProvider>
-      <div className="flex">
-        {/* { !isLoginPage && <Sidebar/> }  */}
-        {/* no sidebar on login page */}
-        <div className="w-full">
-        { !isLoginPage && <Navbar/> } 
-        {/* no navbar either */}
+//   }
+//   else {
+//   return (
+//     <AuthProvider>
+//       <div className="flex">
+//         {/* { !isLoginPage && <Sidebar/> }  */}
+//         {/* no sidebar on login page */}
+//         <div className="w-full">
+//         { !isLoginPage && <Navbar/> } 
+//         {/* no navbar either */}
 
-          {/* <Navbar /> */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/profile" element={<Profile />} />
+//           {/* <Navbar /> */}
+//           <Routes>
+//             <Route path="/" element={<Home />} />
+//             <Route path="/profile/:id" element={<Profile />} />
+//             <Route path="/profile" element={<Profile />} />
             
-            <Route path='/login' element={<LoginForm />} />
-            <Route path='/register' element={<RegisterForm />} />
-          </Routes>
+//             <Route path='/login' element={<LoginForm />} />
+//             <Route path='/register' element={<RegisterForm />} />
+//           </Routes>
          
-        </div>
+//         </div>
         
-      </div>
-    </AuthProvider>
+//       </div>
+//     </AuthProvider>
     
-  );
-}
+//   );
+// }
 }
 
 
