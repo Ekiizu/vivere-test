@@ -6,54 +6,32 @@ import RegisterForm from "./components/RegisterForm";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
-import { useState, useEffect } from "react";
-
 
 function App() {
+  const location = useLocation();
 
-
-  const location = useLocation(); 
-
-  const isLoginPage = location.pathname === "/login";
-
-  // const theme = localStorage.getItem("currentTheme");
-
-  const [theme, setTheme] = useState(localStorage.getItem("currentTheme"))
-
-  useEffect(() => {
-    localStorage.getItem('theme', theme);
-  }, [theme]);
-
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <AuthProvider>
-      <div data-theme={theme} className="flex">
-        { !isLoginPage && <Sidebar /> } 
-        {/* no sidebar on login page */}
-        <div className="w-full">
-        { !isLoginPage && <Navbar /> } 
-        {/* no navbar either */}
+      <div className="flex">
+        {!isAuthPage && <Sidebar />} {/* Hide both sidebar on login and register pages */}
 
-          <Navbar />
+        <div className="w-full">
+          {!isAuthPage && <Navbar />} {/* Same on register pages */}
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/profile" element={<Profile />} />
-            
-            <Route path='/login' element={<LoginForm />} />
-            <Route path='/register' element={<RegisterForm />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
           </Routes>
-         
         </div>
-        
       </div>
     </AuthProvider>
-    
   );
 }
-
-
-
 
 export default App;
 

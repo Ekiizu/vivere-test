@@ -13,7 +13,6 @@ const Card = (initialSize, isProfile) => {
     "images/ozbox.jpg",
     "images/ozzybed.jpg",
     "images/ozzycute.jpg",
-    "images/ozzybaby.jpg",
     "images/ozbox.jpg",
   ];
     
@@ -34,10 +33,10 @@ const Card = (initialSize, isProfile) => {
               alt={`User post ${index + 1}`}
             />
 
-            {/* Hover Overlay */}
+            
             <div
               className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center text-white text-lg font-bold
-              opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
+              opacity-0 group-hover:opacity-50 transition-opacity duration-300 backdrop-blur-sm"
             >
               {"TESTING"}
             </div>

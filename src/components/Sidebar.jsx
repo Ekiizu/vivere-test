@@ -34,7 +34,7 @@ const Sidebar = () => {
             <i className="fas fa-home fa-xl" />
           </Link>
 
-          <Link to="/Profile" className="flex items-center justify-center btn btn-ghost">
+          <Link to="/profile" className="flex items-center justify-center btn btn-ghost">
             <i className="fas fa-circle-user fa-xl" />
           </Link>
 
