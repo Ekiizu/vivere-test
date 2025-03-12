@@ -8,8 +8,9 @@ import "../App.css";
 const Sidebar = () => {
   const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
-  const [theme, setTheme] = useState();
-
+  const [theme, setTheme] = useState(
+    (localStorage.getItem('currentTheme') || 'default')
+  );
   const toggleNotifModal = () => {
     setIsNotifModalOpen(!isNotifModalOpen);
   };
@@ -23,11 +24,8 @@ const Sidebar = () => {
   }
 
   useEffect(() => {
-    if (theme) {
-      localStorage.setItem("currentTheme", theme);
-      console.log(localStorage.getItem("currentTheme"));
-    }
-  }, [theme]); // Runs whenever `theme` state changes
+    localStorage.setItem('currentTheme', theme);
+  }, [theme]);
 
   return (
     <div className="fixed left-0 top-0 h-screen w-48 bg-base shadow-md p-5 flex flex-col justify-between border-r border-base-300">
@@ -81,19 +79,19 @@ const Sidebar = () => {
           </div>
           <ul tabIndex={0} className="dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl">
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Default" value="default" />
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Default" checked={theme === "default"} value="default" />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" value="retro" />
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" checked={theme === "retro"} value="retro" />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" value="cyberpunk" />
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" checked={theme === "cyberpunk"} value="cyberpunk" />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" value="valentine" />
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"  checked={theme === "valentine"} value="valentine" />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua" />
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" checked={theme === "aqua"} value="aqua" />
             </li>
           </ul>
         </div>
