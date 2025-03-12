@@ -6,7 +6,9 @@ import "../App.css";
 
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [theme, setTheme] = useState();
+  const [theme, setTheme] = useState(
+    (localStorage.getItem('currentTheme') || 'default')
+  );
 
   const toggleModal = () => {
     console.log("Testing Modal"); 
@@ -15,10 +17,11 @@ const Sidebar = () => {
 
   const changeTheme = (e) => {
     setTheme(e.target.value);
-    localStorage.setItem("currentTheme", theme)
-    console.log(localStorage.getItem("currentTheme"))
-
   }
+
+  useEffect(() => {
+    localStorage.setItem('currentTheme', theme);
+  }, [theme]);
   
   return (
     <div className="fixed left-0 top-0 h-screen w-48 bg-base shadow-md p-5 flex flex-col justify-between border-r border-base-300">
@@ -34,7 +37,7 @@ const Sidebar = () => {
             <i className="fas fa-home fa-xl" />
           </Link>
 
-          <Link to="/Profile" className="flex items-center justify-center btn btn-ghost">
+          <Link to="/profile" className="flex items-center justify-center btn btn-ghost">
             <i className="fas fa-circle-user fa-xl" />
           </Link>
 
@@ -80,6 +83,7 @@ const Sidebar = () => {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
               aria-label="Default"
+              checked={theme === 'default'}
               value="default" />
           </li>
           <li>
@@ -88,6 +92,7 @@ const Sidebar = () => {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
               aria-label="Retro"
+              checked={theme === 'retro'}
               value="retro" />
           </li>
           <li>
@@ -96,6 +101,7 @@ const Sidebar = () => {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
               aria-label="Cyberpunk"
+              checked={theme === 'cyberpunk'}
               value="cyberpunk" />
           </li>
           <li>
@@ -104,6 +110,8 @@ const Sidebar = () => {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
               aria-label="Valentine"
+              checked={theme === 'valentine'}
+
               value="valentine" />
           </li>
           <li>
@@ -112,6 +120,8 @@ const Sidebar = () => {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
               aria-label="Aqua"
+              checked={theme === 'aqua'}
+
               value="aqua" />
           </li>
         </ul>
