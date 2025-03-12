@@ -1,25 +1,27 @@
 import React, { useEffect } from "react";
 import "../App.css";
 
-export default function NotifModal({ isOpen, toggleModal }) {
-  useEffect(() => {
-    console.log("Modal isOpen:", isOpen);
-  }, [isOpen]);
+export default function PostModal() {
 
-  if (!isOpen) return null;
-
-  return (
-    <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <dialog id="my_modal_1" className="modal" open>
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Create Post</h3>
-          <p className="py-3">CREATE POST TEST</p>
-          <div className="modal-action">
-            <button className="btn" onClick={toggleModal}>Close</button>
-            post test
-          </div>
-        </div>
-      </dialog>
-    </div>
-  );
+    const handleModal = (e) => {
+        document.getElementById('my_modal_3').showModal()
+        console.log("help")
+    }
+    
+    return(
+        <>
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+            <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}>open modal</button>
+            <dialog id="my_modal_3" className="modal">
+            <div className="modal-box">
+                <form method="dialog modal-backdrop">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <h3 className="font-bold text-lg">Hello!</h3>
+                <p className="py-4">Press ESC key or click on ✕ button to close</p>
+            </div>
+            </dialog>
+        </>
+    );
 }
