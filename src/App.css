@@ -20,7 +20,7 @@
   background-color: #261b1b; 
   box-shadow: 2px 0 10px rgba(81, 69, 69, 0.1);
   padding: 1rem;
-  z-index: 9999 !important; /* Ensure it's above everything */
+  z-index: 9999 !important; 
 }
 
 /* Main content area */

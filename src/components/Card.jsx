@@ -11,7 +11,6 @@ const Card = (initialSize) => {
     "images/ozbox.jpg",
     "images/ozzybed.jpg",
     "images/ozzycute.jpg",
-    "images/ozzybaby.jpg",
     "images/ozbox.jpg",
   ];
     
