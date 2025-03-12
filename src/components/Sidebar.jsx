@@ -1,7 +1,6 @@
 import React, { useState } from "react"; 
 import NotifModal from "./NotifModal";
 import { Link } from "react-router-dom";
-import handleModal from "./PostModal";
 
 import "../App.css";
 
@@ -81,7 +80,7 @@ const Sidebar = () => {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
               aria-label="Default"
-              value="light" />
+              value="default" />
           </li>
           <li>
             <input

@@ -6,15 +6,23 @@ import RegisterForm from "./components/RegisterForm";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
+import { useState, useEffect } from "react";
 
 
 function App() {
+
 
   const location = useLocation(); 
 
   const isLoginPage = location.pathname === "/login";
 
-  const theme = localStorage.getItem("currentTheme");
+  // const theme = localStorage.getItem("currentTheme");
+
+  const [theme, setTheme] = useState(localStorage.getItem("currentTheme"))
+
+  useEffect(() => {
+    localStorage.getItem('theme', theme);
+  }, [theme]);
 
 
   return (
