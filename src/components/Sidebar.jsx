@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState } from "react"; 
 import NotifModal from "./NotifModal";
 import { Link } from "react-router-dom";
 
@@ -15,14 +15,10 @@ const Sidebar = () => {
 
   const changeTheme = (e) => {
     setTheme(e.target.value);
-  }
+    localStorage.setItem("currentTheme", theme)
+    console.log(localStorage.getItem("currentTheme"))
 
-  useEffect(() => {
-    if (theme) {
-      localStorage.setItem("currentTheme", theme)
-      console.log(localStorage.getItem("currentTheme"));
-    }
-  }, [theme]); // This will run every time the `theme` state changes
+  }
   
   return (
     <div className="fixed left-0 top-0 h-screen w-48 bg-base shadow-md p-5 flex flex-col justify-between border-r border-base-300">
