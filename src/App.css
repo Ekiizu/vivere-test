@@ -1,13 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui" {
+<<<<<<< HEAD
   themes: light --default, coffee --prefersdark, retro, cyberpunk, valentine, aqua;
+=======
+  themes: light --default, retro, cyberpunk, valentine, aqua;
+>>>>>>> 68767086eb2ec8ba94b28528dd15318db5aea673
 }
 
-
+/* Ensure the app takes up the full screen */
 #root {
   min-height: 100vh;
-  /* display: flex; */
-
+  display: flex;
+  /* Light background */
 }
 
 /* Full-screen sidebar */
@@ -20,7 +24,6 @@
   background-color: #261b1b; 
   box-shadow: 2px 0 10px rgba(81, 69, 69, 0.1);
   padding: 1rem;
-  z-index: 9999 !important; 
 }
 
 /* Main content area */
@@ -31,8 +34,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: visible !important;
-  z-index: auto;
 }
 
 
@@ -52,6 +53,7 @@
 
 
 /* modal */
+
 .modal {
   position: fixed; 
   top: 50%;
@@ -62,16 +64,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999 !important; /* Ensure it's above everything */
+  z-index: 1001; 
 }
-
 .modal-content {
   background: white;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  z-index: 1002 !important; /* Higher than overlay */
+  z-index: 1000;
 }
 
 .overlay {
@@ -80,14 +81,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  z-index: 1001 !important; /* Ensure it's below modal content */
+  background: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(5px); 
+  z-index: 1000; 
 }
-
-.group:hover {
-  z-index: 500 !important; 
-}
-
 
 
