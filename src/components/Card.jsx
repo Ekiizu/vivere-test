@@ -20,6 +20,7 @@ const Card = (initialSize, isProfile) => {
   console.log(initialSize)
 
   // why is initial size an object???????
+  // lad idk
   if (initialSize.isProfile) {
     return(
     <div style={{width: size}} className="flex-1 border-2 border-primary p-4 rounded">

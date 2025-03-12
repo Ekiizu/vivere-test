@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react"; 
 import NotifModal from "./NotifModal";
+import PostModal from "./PostModal";
 import { Link } from "react-router-dom";
 
 import "../App.css";
 
 const Sidebar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
+  const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [theme, setTheme] = useState();
 
-  const toggleModal = () => {
-    console.log("Testing Modal"); 
-    setIsModalOpen(!isModalOpen);
+  const toggleNotifModal = () => {
+    setIsNotifModalOpen(!isNotifModalOpen);
+  };
+
+  const togglePostModal = () => {
+    setIsPostModalOpen(!isPostModalOpen);
   };
 
   const changeTheme = (e) => {
@@ -19,11 +24,11 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (theme) {
-      localStorage.setItem("currentTheme", theme)
+      localStorage.setItem("currentTheme", theme);
       console.log(localStorage.getItem("currentTheme"));
     }
-  }, [theme]); // This will run every time the `theme` state changes
-  
+  }, [theme]); // Runs whenever `theme` state changes
+
   return (
     <div className="fixed left-0 top-0 h-screen w-48 bg-base shadow-md p-5 flex flex-col justify-between border-r border-base-300">
       {/* Top Section - Logo/Icon */}
@@ -44,94 +49,68 @@ const Sidebar = () => {
 
           {/* Notification Button */}
           <button 
-            onClick={toggleModal}
+            onClick={toggleNotifModal}
             className="flex items-center justify-center btn btn-ghost"
           >
             <i className="fas fa-bell fa-xl" />
           </button>
 
+          {/* Post Button */}
           <button 
-            onClick={console.log("help")}
+            onClick={togglePostModal}
             className="flex items-center justify-center btn btn-ghost"
           >
             <i className="fas fa-square-plus fa-xl" />
-
           </button>
-
-          {/* <Link to="/post" className="flex items-center justify-center btn btn-ghost">
-          </Link> */}
         </div>
       </div>
 
       {/* Bottom Section - Settings Icon */}
       <div>
-      <div className="dropdown mb-72" onChange={changeTheme}>
-        <div tabIndex={0} role="button" className="btn m-1">
-          Theme
-          <svg
-            width="12px"
-            height="12px"
-            className="inline-block h-2 w-2 fill-current opacity-60"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 2048 2048">
-            <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-          </svg>
+        <div className="dropdown justify-center mb-72" onChange={changeTheme}>
+          <div tabIndex={0} role="button" className="btn m-1">
+            Theme
+            <svg
+              width="12px"
+              height="12px"
+              className="inline-block h-2 w-2 fill-current opacity-60"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 2048 2048">
+              <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+            </svg>
+          </div>
+          <ul tabIndex={0} className="dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl">
+            <li>
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Default" value="default" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" value="retro" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" value="cyberpunk" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" value="valentine" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua" />
+            </li>
+          </ul>
         </div>
-        <ul tabIndex={0} className="dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl">
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Default"
-              value="default" />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Retro"
-              value="retro" />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Cyberpunk"
-              value="cyberpunk" />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Valentine"
-              value="valentine" />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Aqua"
-              value="aqua" />
-          </li>
-        </ul>
-      </div>
 
         <Link to="/settings" className="flex items-center justify-center btn btn-ghost">
           <i className="fas fa-cog fa-xl" />
         </Link>
       </div>
 
-      {/* Notification Modal (outside of navigation icons) */}
-      <NotifModal isOpen={isModalOpen} toggleModal={toggleModal} />
+      {/* Notification Modal */}
+      <NotifModal isOpen={isNotifModalOpen} toggleModal={toggleNotifModal} />
+
+      {/* Post Modal */}
+      <PostModal isOpen={isPostModalOpen} toggleModal={togglePostModal} />
     </div>
   );
 };
 
 export default Sidebar;
-
 

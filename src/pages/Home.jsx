@@ -33,7 +33,8 @@ function Home() {
       <div className="ml-48 mt-16 flex-1 p-5">
         {/* Masonry Image Layout with Smaller Images */}
         <Card />
-        <button className="btn" onClick={toggleModal}>Open Notification Modal</button>
+        {/* <button className="btn" onClick={toggleModal}>Open Notification Modal</button> */} 
+        {/* testing */}
       </div>
       <NotifModal isOpen={isModalOpen} toggleModal={toggleModal} />
     </div>
