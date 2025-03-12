@@ -42,7 +42,7 @@ const RegisterForm = () => {
     return (
         <div className="flex items-center justify-center h-screen">
             <div className="relative w-[800px] h-[600px] border-2 border-black rounded-lg p-8 shadow-lg flex">
-                {/* <div className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 rotate-[-90deg] text-orange-500 text-3xl font-bold">Welcome</div> */}
+                
                 
                 <div className="w-full flex flex-col items-center">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-black shadow-md">
@@ -59,8 +59,8 @@ const RegisterForm = () => {
                         <input className="w-full mb-2 px-4 py-2 border rounded-lg" type="date" name="date_of_birth" value={form.date_of_birth} onChange={handleChange} required />
                         <input className="w-full mb-4 px-4 py-2 border rounded-lg" type="text" name="bio" placeholder="Bio" value={form.bio} onChange={handleChange} />
                         
-                        <button type="submit" className="w-full py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition">Register</button>
-                        <button type="button" className="w-full mt-3 py-2 bg-gray-300 text-gray-700 rounded-lg shadow-md hover:bg-yellow-400 transition" onClick={() => navigate("/Login")}>Back to Login</button>
+                        <button type="submit" className="w-full py-2 bg-primary text-white rounded-lg shadow-md hover:bg-green-400 transition">Register</button>
+                        <button type="button" className="w-full mt-3 py-2 bg-primary text-gray-700 rounded-lg shadow-md hover:bg-red-400 transition" onClick={() => navigate("/Login")}>Back to Login</button>
                     </form>
                 </div>
             </div>

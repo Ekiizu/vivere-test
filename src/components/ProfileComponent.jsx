@@ -38,11 +38,11 @@ const ProfileComponent = () => {
 
         {/* Edit and Logout Buttons */}
         <div className="mt-4 flex justify-center space-x-3">
-          <button className="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-yellow-600 transition">
+          <button className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition">
             Edit
           </button>
           <button
-            className="px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
+            className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
             onClick={() => navigate("/login")} 
           >
             Logout

@@ -7,73 +7,31 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
 
-
 function App() {
+  const location = useLocation();
 
-  const location = useLocation(); 
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
 
-  const isLoginPage = location.pathname === "/login";
-  const isRegisterPage = location.pathname === "/register"
+  return (
+    <AuthProvider>
+      <div className="flex">
+        {!isAuthPage && <Sidebar />} {/* Hide both sidebar on login and register pages */}
 
-  // if (!isLoginPage) {
-    return (
-      <AuthProvider>
-        <div className="flex">
-          { !isLoginPage && <Sidebar/> } 
-          {/* no sidebar on login page */}
-          <div className="w-full">
-          { !isLoginPage && <Navbar/> } 
-          {/* no navbar either */}
-  
-            {/* <Navbar /> */}
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile/:id" element={<Profile />} />
-              <Route path="/profile" element={<Profile />} />
-              
-              <Route path='/login' element={<LoginForm />} />
-              <Route path='/register' element={<RegisterForm />} />
-            </Routes>
-            
-          </div>
-          
+        <div className="w-full">
+          {!isAuthPage && <Navbar />} {/* Same on register pages */}
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
+          </Routes>
         </div>
-      </AuthProvider>
-      
-    );
-    
-//   }
-//   else {
-//   return (
-//     <AuthProvider>
-//       <div className="flex">
-//         {/* { !isLoginPage && <Sidebar/> }  */}
-//         {/* no sidebar on login page */}
-//         <div className="w-full">
-//         { !isLoginPage && <Navbar/> } 
-//         {/* no navbar either */}
-
-//           {/* <Navbar /> */}
-//           <Routes>
-//             <Route path="/" element={<Home />} />
-//             <Route path="/profile/:id" element={<Profile />} />
-//             <Route path="/profile" element={<Profile />} />
-            
-//             <Route path='/login' element={<LoginForm />} />
-//             <Route path='/register' element={<RegisterForm />} />
-//           </Routes>
-         
-//         </div>
-        
-//       </div>
-//     </AuthProvider>
-    
-//   );
-// }
+      </div>
+    </AuthProvider>
+  );
 }
-
-
-
 
 export default App;
 

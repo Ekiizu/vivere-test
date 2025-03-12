@@ -51,7 +51,7 @@ const LoginForm = () => {
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                                 type="email"
                                 name="email"
-                                placeholder="test@vivere.com"
+                                placeholder="test@vivere.ie"
                                 value={form.email}
                                 onChange={handleChange}
                                 required
@@ -71,14 +71,14 @@ const LoginForm = () => {
                             />
                         </div>
 
-                        <button type="submit" className="w-full py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition">
+                        <button type="submit" className="w-full py-2 bg-accent text-secondary rounded-lg shadow-md hover:bg-green-600 transition">
                             Log In
                         </button>
 
                         <button
                             type="button"
-                            className="w-full mt-3 py-2 bg-secondary-300 rounded-lg shadow-md hover:bg-yellow-400 transition"
-                            onClick={() => navigate("/Register")}
+                            className="w-full mt-3 py-2 bg-accent text-secondary rounded-lg shadow-md hover:bg-gray-400 transition"
+                            onClick={() => navigate("/register")}
                         >
                             Register
                         </button>
