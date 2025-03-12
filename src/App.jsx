@@ -14,9 +14,12 @@ function App() {
 
   const isLoginPage = location.pathname === "/login";
 
+  const theme = localStorage.getItem("currentTheme");
+
+
   return (
     <AuthProvider>
-      <div data-theme="light" className="flex">
+      <div data-theme={theme} className="flex">
         { !isLoginPage && <Sidebar /> } 
         {/* no sidebar on login page */}
         <div className="w-full">

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: all --default, coffee --prefersdark, cupcake;
+  themes: light --default, coffee --prefersdark, retro, cyberpunk, valentine, aqua;
 }
 
 /* Ensure the app takes up the full screen */
