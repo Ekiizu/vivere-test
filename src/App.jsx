@@ -16,7 +16,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <div className="flex">
+      <div data-theme="light" className="flex">
         { !isLoginPage && <Sidebar /> } 
         {/* no sidebar on login page */}
         <div className="w-full">
