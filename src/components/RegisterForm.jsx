@@ -22,7 +22,8 @@ const RegisterForm = () => {
         setError(null);
         axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/register`, form)
             .then((res) => {
-                localStorage.setItem("user", JSON.stringify(res.data.user));
+                console.log(res)
+                localStorage.setItem("user", JSON.stringify(res.data.data));
                 login(form.email, form.password);
                 navigate("/");
             })

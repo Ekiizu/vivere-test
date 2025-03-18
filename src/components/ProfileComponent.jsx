@@ -5,6 +5,8 @@ import "../App.css";
 const ProfileComponent = () => {
   const navigate = useNavigate(); 
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const images = [
     "images/ozzy.jpg",
     "images/ozzybaby.jpg",
@@ -33,7 +35,8 @@ const ProfileComponent = () => {
 
       <div className="p-6 text-center">
         {/* User Info */}
-        <h1 className="text-2xl font-bold">Ekiizu</h1>
+        {console.log(user.username)}
+        <h1 className="text-2xl font-bold">{user.username}</h1>
         <h3 className="text">@Ekiizu</h3>
 
         {/* Edit and Logout Buttons */}
@@ -58,7 +61,7 @@ const ProfileComponent = () => {
 
         {/* Bio Section */}
         <div className="mt-6 p-4 border-t">
-          <p className="text-sm">HELLLOOOO!!!!!!!!!!!</p>
+          <p className="text-sm">{user.bio}</p>
         </div>
       </div>
     </div>
