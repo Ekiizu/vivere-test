@@ -92,6 +92,7 @@ function Profile() {
   }, [isResizing]);
 
   return (
+  console.log(localStorage.getItem("user")),
   <div className="ml-48 mt-16 p-5 flex gap-6">
   {/* User Posts Section */}
   
