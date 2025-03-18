@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import NotifModal from "./NotifModal";
 import PostModal from "./PostModal";
 import { Link } from "react-router-dom";
-
 import "../App.css";
 
 const Sidebar = () => {
   const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [theme, setTheme] = useState(
-    (localStorage.getItem('currentTheme') || 'default')
+    localStorage.getItem('currentTheme') || 'default'
   );
+
   const toggleNotifModal = () => {
     setIsNotifModalOpen(!isNotifModalOpen);
   };
@@ -21,7 +21,7 @@ const Sidebar = () => {
 
   const changeTheme = (e) => {
     setTheme(e.target.value);
-  }
+  };
 
   useEffect(() => {
     localStorage.setItem('currentTheme', theme);
@@ -52,6 +52,7 @@ const Sidebar = () => {
           >
             <i className="fas fa-bell fa-xl" />
           </button>
+          {isNotifModalOpen && <NotifModal isOpen={isNotifModalOpen} toggleModal={toggleNotifModal} />}
 
           {/* Post Button */}
           <button 
@@ -60,6 +61,7 @@ const Sidebar = () => {
           >
             <i className="fas fa-square-plus fa-xl" />
           </button>
+          {isPostModalOpen && <PostModal isOpen={isPostModalOpen} toggleModal={togglePostModal} />}
         </div>
       </div>
 
@@ -88,7 +90,7 @@ const Sidebar = () => {
               <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" checked={theme === "cyberpunk"} value="cyberpunk" />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"  checked={theme === "valentine"} value="valentine" />
+              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" checked={theme === "valentine"} value="valentine" />
             </li>
             <li>
               <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" checked={theme === "aqua"} value="aqua" />
@@ -100,15 +102,11 @@ const Sidebar = () => {
           <i className="fas fa-cog fa-xl" />
         </Link>
       </div>
-
-      {/* Notification Modal */}
-      <NotifModal isOpen={isNotifModalOpen} toggleModal={toggleNotifModal} />
-
-      {/* Post Modal */}
-      <PostModal isOpen={isPostModalOpen} toggleModal={togglePostModal} />
     </div>
   );
 };
 
 export default Sidebar;
 
+
+//still need to figure out how to connect modals onto buttons directly 18TH MARCH 

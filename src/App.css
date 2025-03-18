@@ -1,16 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-<<<<<<< HEAD
-  themes: light --default, coffee --prefersdark, retro, cyberpunk, valentine, aqua;
-=======
-  themes: light --default, retro, cyberpunk, valentine, aqua;
->>>>>>> 68767086eb2ec8ba94b28528dd15318db5aea673
+  themes: light --default, coffee --prefersdark retro, cyberpunk, valentine, aqua;
 }
 
 /* Ensure the app takes up the full screen */
 #root {
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   /* Light background */
 }
 
@@ -87,3 +83,12 @@
 }
 
 
+/* Ensure modal is hidden by default */
+.modal.hidden {
+  display: none;
+}
+
+/* Ensure modal is visible when open */
+.modal.block {
+  display: block;
+}
