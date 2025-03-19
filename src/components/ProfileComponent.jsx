@@ -18,7 +18,7 @@ const ProfileComponent = () => {
   ];
 
   return (
-    <div className="max-w-2xl mx-auto rounded-lg overflow-hidden">
+    <div className="max-w-2xl mx-auto rounded-sm overflow-hidden">
       {/* Banner */}
       <div className="relative">
         <img
@@ -33,7 +33,7 @@ const ProfileComponent = () => {
         />
       </div>
 
-      <div style={{background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`}} className="p-6 text-center">
+      <div style={{background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`}} className="p-6 min-h-102 text-center">
         {/* User Info */}
         {console.log(user.username)}
         <h1 className="text-2xl font-bold">{user.username}</h1>
