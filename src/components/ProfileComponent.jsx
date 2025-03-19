@@ -33,7 +33,7 @@ const ProfileComponent = () => {
         />
       </div>
 
-      <div className="p-6 text-center">
+      <div style={{background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`}} className="p-6 text-center">
         {/* User Info */}
         {console.log(user.username)}
         <h1 className="text-2xl font-bold">{user.username}</h1>
