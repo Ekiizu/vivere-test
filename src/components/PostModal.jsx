@@ -1,15 +1,25 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../App.css";
 
 export default function PostModal() {
-    // State to store the form data (header, body, image)
-    const [header, setHeader] = useState("");
-    const [body, setBody] = useState("");
+    // State to store the form data (header, description, image)
+    const user = JSON.parse(localStorage.getItem("user")) // logged in user details
+
+    // const [header, setHeader] = useState("");
+    const [userId, setUserId] = useState(user.id)
+    // const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
 
+    const [form, setForm] = useState({
+        user_id: userId,
+        description: ""
+    })
+
     // Handle input changes
-    const handleHeaderChange = (e) => setHeader(e.target.value);
-    const handleBodyChange = (e) => setBody(e.target.value);
+    // const handleHeaderChange = (e) => setHeader(e.target.value);
+    // const handleDescriptionChange = (e) => setDescription(e.target.value);
 
     // Handle image upload
     const handleImageChange = (e) => setImage(e.target.files[0]);
@@ -19,23 +29,51 @@ export default function PostModal() {
         e.preventDefault();
 
         // Log the post data (BACKEND)
-        console.log({
-            header,
-            body,
-            image,
-        });
+        // console.log({
+        //     // header,
+        //     userId,
+            
+        //     image,
+        // });
 
+        console.log(form)
+        axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/posts`, form, {
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
+            // We treat navigating routes like navigating a file system
+            // We've got to go up one level using '../' to get back to /doctors/{id} from here
+            // (we're currently at /doctors/create)                
+            // navigate(`../${res.data.id}`, {relative: 'path'})
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+        
        
         console.log("Post has been sent to Mars!");
 
         // Reset the form
-        setHeader("");
-        setBody("");
+        // setHeader("");
+        setDescription("");
         setImage(null);
 
         // Close the modal after submission
         document.getElementById("my_modal_3").close();
     };
+
+    // Handle form change
+    const handleChange = (e) => {
+        console.log(e.target.name)
+        setForm(({
+            ...form,
+            [e.target.name]: e.target.value
+            
+        }))
+    }
 
     return (
         <>
@@ -55,7 +93,7 @@ export default function PostModal() {
                             ✕
                         </button>
 
-                        {/* Header input */}
+                        {/* Header input
                         <h3 className="font-bold text-lg">Create a Post! ✮⋆˙</h3>
                         <input
                             type="text"
@@ -64,16 +102,24 @@ export default function PostModal() {
                             value={header}
                             onChange={handleHeaderChange}
                             required
-                        />
+                        /> */}
                         
                         {/* Body input */}
-                        <textarea
-                            className="textarea textarea-bordered w-full mt-4"
-                            placeholder=""
-                            value={body}
-                            onChange={handleBodyChange}
+                        {/* <textarea
+                            className="textarea-lg textarea-bordered w-full mt-4"
+                            placeholder="Share your thoughts!"
+                            onChange={handleChange}
+                            required
+                        /> */}
+                        <input
+                            type="text"
+                            name="description"
+                            className="input input-bordered w-full mt-4"
+                            placeholder="Share your thoughts!"
+                            onChange={handleChange}
                             required
                         />
+
 
                         {/* Image upload */}
                         <div className="mt-4">
