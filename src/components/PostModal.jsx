@@ -55,14 +55,15 @@ export default function PostModal() {
         
        
         console.log("Post has been sent to Mars!");
-
-        // Reset the form
-        // setHeader("");
-        setDescription("");
-        setImage(null);
-
+        
         // Close the modal after submission
         document.getElementById("my_modal_3").close();
+
+        // Reset form
+        setForm({
+            user_id: userId,
+            description: ""
+        })
     };
 
     // Handle form change
@@ -116,6 +117,7 @@ export default function PostModal() {
                             name="description"
                             className="input input-bordered w-full mt-4"
                             placeholder="Share your thoughts!"
+                            value={form.description}
                             onChange={handleChange}
                             required
                         />
