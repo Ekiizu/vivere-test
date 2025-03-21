@@ -69,7 +69,7 @@ function Profile() {
     const newSize = size - movement; // Add the movement to the initial size
 
     // constrain resizing
-    if (newSize > 250 && newSize < window.innerWidth * 0.4) {
+    if (newSize > 275 && newSize < window.innerWidth * 0.4) {
       console.log(newSize);
       setSize(newSize);
     }
