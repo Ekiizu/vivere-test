@@ -97,7 +97,7 @@ function Profile() {
   {/* User Posts Section */}
   
 
-  <Card initialSize={450} isProfile={true}></Card>
+  <Card initialSize={size} isProfile={true}></Card>
   
       {/* Resizer Divider */}
       <div

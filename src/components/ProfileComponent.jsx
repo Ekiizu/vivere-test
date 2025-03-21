@@ -29,11 +29,12 @@ const ProfileComponent = () => {
         <img
           src="images/ozzy.jpg"
           alt="User Profile"
-          className="w-24 h-24 rounded-full object-cover border-4 border-white absolute left-1/2 transform -translate-x-1/2 -bottom-12 shadow-md ml-50"
+          className="w-24 h-24 rounded-full object-cover border-4 border-accent absolute left-1/2 transform -translate-x-1/2 -bottom-12 shadow-md ml-50"
         />
       </div>
 
-      <div style={{background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`}} className="p-6 min-h-102 text-center">
+      <div style={{background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`}} className="p-6 min-h-180 text-center"> 
+        {/* hardcoded the size of the gradient for now */}
         {/* User Info */}
         {console.log(user.username)}
         <h1 className="text-2xl font-bold">{user.username}</h1>
