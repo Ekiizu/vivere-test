@@ -11,6 +11,9 @@ function Home() {
 
   const user = JSON.parse(localStorage.getItem("user")) // logged in user details
   const [posts, setPosts] = useState(null)
+  const [postImages, setPostImages] = useState(null)
+
+  const [feedDisplay, setFeedDisplay] = useState(null)
 
   const navigate = useNavigate();
 
@@ -26,6 +29,18 @@ function Home() {
     })
       .then(res => {
         setPosts(res.data.data)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+  useEffect(() => {
+    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images`, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+      .then(res => {
+        setPostImages(res.data.data)
       })
       .catch(err => console.log(err))
   }, [])
@@ -61,7 +76,7 @@ function Home() {
   //   </div>
   // );
 
-  if(posts != null) {
+  if(posts != null && postImages != null) {
     return posts && (
 
       // this is to confine the post area within the right space
@@ -70,7 +85,17 @@ function Home() {
         {/* for each post return post, j is the current iteration  */}
         {posts.map(({ id, user_id, description }, j) => {
           return (
-            <div className="border-2 rounded border-secondary m-5">
+            <div className="bg-base hover:bg-base-300 border-2 rounded border-secondary m-5">
+              <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center">
+              {postImages.map(({id, image_link, post_id}, k) => {
+                console.log(postImages[k])
+                if(postImages[k].post_id == posts[j].id) {
+                  return(
+                    <img src={postImages[k].image_link} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
+                  )
+                }
+              })}
+              </div>
               <Post postInfo={posts[j]}/>
             </div>
           )          

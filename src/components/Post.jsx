@@ -15,7 +15,7 @@ const Post = (postInfo) => {
             }
         })
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 setPoster(response.data.data)
             })
             .catch(err => console.log(err))
@@ -24,7 +24,7 @@ const Post = (postInfo) => {
 
     if (poster != null) {
     return (
-        <div className="bg-base hover:bg-base-300 rounded">
+        <div className="">
         <div className="flex p-5 ">
             <div className="pr-3">
                 <img src={`https://api.dicebear.com/9.x/adventurer/svg?seed=%7B${info.user_id}%7D&radius=50&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`} width="64" height="64"/> 
