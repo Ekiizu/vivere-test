@@ -70,11 +70,18 @@ function Home() {
         {/* for each post return post, j is the current iteration  */}
         {posts.map(({ id, user_id, description }, j) => {
           return (
-            <Post postInfo={posts[j]}/>
+            <div className="border-2 rounded border-secondary m-5">
+              <Post postInfo={posts[j]}/>
+            </div>
           )          
         })}
       </div>
       </div>
+    )
+  }
+  else {
+    return (
+      <div class="loader"></div>
     )
   }
 }
