@@ -3,8 +3,8 @@ import axios from "axios";
 import "../App.css";
 
 // This is just the text and info for the posts. Images will be added in the home page. To avoid unnecessary API calls
-const Post = (postInfo) => {
-    const info = postInfo.postInfo;
+const Comment = (commentInfo) => {
+    const info = commentInfo.commentInfo;
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
     
     const [poster, setPoster] = useState()
@@ -31,7 +31,7 @@ const Post = (postInfo) => {
             </div>
             <div>
                 <h2 className="card-title">{poster.username}</h2>
-                <p>{info.description}</p>
+                <p>{info.body}</p>
             </div>
         </div>
         </div>
@@ -44,4 +44,4 @@ const Post = (postInfo) => {
     }
 }
 
-export default Post;
+export default Comment;
