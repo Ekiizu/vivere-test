@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../App.css";
 import Post from "../../components/Post";
 import Comment from "../../components/Comment";
+import Reply from "../../components/Reply";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ViewPost() {
@@ -14,6 +15,7 @@ function ViewPost() {
   const [post, setPost] = useState(null)
   const [postImages, setPostImages] = useState(null)
   const [comments, setComments] = useState(null)
+  const [replies, setReplies] = useState (null)
 
   const navigate = useNavigate();
 
@@ -78,9 +80,20 @@ function ViewPost() {
       }
     })
       .then(res => {
-        console.log(post)
+        console.log(res.data.data)
         setComments(res.data.data.filter((comment) => (comment.post_id == id)))
+        return axios.get (`https://viverebackend-main-girysq.laravel.cloud/api/replies`, {
+            headers: {
+              Authorization: `Bearer ${user.token}`
+            }
+          })
       })
+      .then(repRes => {
+        console.log(repRes.data.data)
+        setReplies(repRes.data.data)
+      }
+
+      )
       .catch(err => console.log(err))
   }, [])
 
@@ -104,17 +117,31 @@ function ViewPost() {
               })}
               </div>
               <Post postInfo={post}/>
-              {comments != null && <h1>{comments.length} comments</h1>}
               
               
             </div>
+
+            {comments != null && <h1 className="text-xl font-bold mx-8 text-primary">{comments.length} comments</h1>}
+
 
             {comments != null && 
             comments.map(({id, body, user_id, post_id}, j) => {
                 if(comments[j].post_id == post.id) {
                     return(
-                        <div className="m-5 px-8 py-4 border-2 rounded bg-base hover:bg-base-300">
+                        <div className="m-5 px-8 py-4 border-2">
                         <Comment commentInfo={comments[j]} />
+                        {replies != null &&
+                        replies.map(({id, user_id, body, comment_id}, i) => {
+                            if(replies[i].comment_id == comments[j].id) {
+                                console.log(replies[i])
+
+                                return (
+                                    <div className="ml-16 py-2 ">
+                                    <Reply replyInfo={replies[i]} />
+                                    </div>
+                                )
+                            }
+                        })}
                         </div>
                     )
                 }
