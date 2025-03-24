@@ -25,7 +25,7 @@ const Post = (postInfo) => {
     if (poster != null) {
     return (
         <div className="">
-        <div className="flex p-5 ">
+        <div className="flex p-8 ">
             <div className="pr-3">
                 <img loading="lazy" src={`https://api.dicebear.com/9.x/adventurer/svg?seed=%7B${info.user_id}%7D&radius=50&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`} width="64" height="64"/> 
             </div>

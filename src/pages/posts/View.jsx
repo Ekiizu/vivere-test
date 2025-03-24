@@ -48,6 +48,29 @@ function ViewPost() {
   }, [])
 
 //   get comments
+//   async function fetchPostComments() {
+
+
+    
+//     let postRes = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${user.token}`
+//       }
+//     })
+
+//     let commentRes = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments`, {
+//         headers: {
+//           Authorization: `Bearer ${user.token}`
+//         }
+//     })
+//     .then(res => {
+//         commentRes.data.data.filter((comment) => (comment.post_id == postRes.data.data.id))
+//         setComments(res.data.data)
+//       })
+//       .catch(err => console.log(err))
+//     }
+    
+
   useEffect(() => {
     axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments`, {
       headers: {
@@ -55,7 +78,8 @@ function ViewPost() {
       }
     })
       .then(res => {
-        setComments(res.data.data)
+        console.log(post)
+        setComments(res.data.data.filter((comment) => (comment.post_id == id)))
       })
       .catch(err => console.log(err))
   }, [])
@@ -69,18 +93,19 @@ function ViewPost() {
       // this is to confine the post area within the right space
       <div className="ml-48 mt-16 flex-1 p-5"> 
       <div className="flex-1 border-2 border-primary p-4 rounded">
-            <div className="bg-base hover:bg-base-300 border-2 rounded border-secondary m-5">
+            <div className=" border-2 rounded border-secondary m-5">
               <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center">
               {postImages.map(({id, image_link, post_id}, k) => {
                 if(postImages[k].post_id == post.id) {
                   return(
-                    <img src={postImages[k].image_link} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
+                    <img src={postImages[k].image_link} className="mt-4 w-full h-[400px] rounded object-cover col-span-1"/>
                   )
                 }
               })}
               </div>
               <Post postInfo={post}/>
-
+              {comments != null && <h1>{comments.length} comments</h1>}
+              
               
             </div>
 
@@ -88,7 +113,9 @@ function ViewPost() {
             comments.map(({id, body, user_id, post_id}, j) => {
                 if(comments[j].post_id == post.id) {
                     return(
+                        <div className="m-5 px-8 py-4 border-2 rounded bg-base hover:bg-base-300">
                         <Comment commentInfo={comments[j]} />
+                        </div>
                     )
                 }
 
