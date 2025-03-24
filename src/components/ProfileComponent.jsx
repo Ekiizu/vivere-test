@@ -23,11 +23,11 @@ const ProfileComponent = () => {
   ];
 
   
-  const fetchGif = async () => {
+  const fetchGif = async (persona) => {
     try {
       const API_KEY = "LyXmyl9nY7CVVj1wzxnSpVwv3cptUaox";
       const response = await fetch(
-        `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=&rating=g`
+        `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${persona}=&rating=g`
       );
       const data = await response.json();
       setBanner(data.data.images.original.url); 
@@ -37,7 +37,7 @@ const ProfileComponent = () => {
   };
 
   useEffect(() => {
-    fetchGif();
+    fetchGif("persona");
 }, []);
 
   return (

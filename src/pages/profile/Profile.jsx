@@ -9,7 +9,7 @@ import Edit from "./Edit.jsx";
 function Profile() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null); // Store user data
-  const [banner, setBanner] = useState(""); // Store banner GIF
+
   const [size, setSize] = useState(450);
   const [isResizing, setIsResizing] = useState(false);
   const [startX, setStartX] = useState(0); // Track initial mouse position
@@ -95,7 +95,7 @@ function Profile() {
       />
 
       {/* Profile Section with Banner */}
-      <div style={{ width: `${size}px` }} className="w-140 border-2 border-primary rounded">
+      <div style={{ width: `${size}px` }} className="w-140 border-3 border-primary rounded">
        <ProfileComponent> </ProfileComponent>
       </div>
     </div>

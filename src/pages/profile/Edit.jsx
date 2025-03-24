@@ -31,7 +31,7 @@ function Edit() {
     try {
       // API call to update the user profile in the database
       const response = await axios.patch(
-        `https://your-backend-url.com/api/users/${user.id}`,
+        `https:/viverebackend-main-girysq.laravel.cloud/api/users/${user.id}`,
         form,
         {
           headers: {
@@ -43,7 +43,7 @@ function Edit() {
       console.log("Profile updated successfully:", response.data);
 
       
-      localStorage.setItem("user", JSON.stringify(response.data));
+    //   localStorage.setItem("user", JSON.stringify(response.data));
 
       // Navigate back to the profile page
       navigate("/profile");
