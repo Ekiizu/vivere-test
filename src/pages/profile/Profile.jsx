@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
-import Card from "../components/Card.jsx"
-import ProfileComponent from "../components/ProfileComponent.jsx"
+import "../../App.css";
+import Card from "../../components/Card.jsx"
+import ProfileComponent from "../../components/ProfileComponent.jsx"
+import Edit from "./Edit.jsx";
+
 
 function Profile() {
   const navigate = useNavigate();
@@ -27,21 +29,7 @@ function Profile() {
       }
     };
 
-    const fetchGif = async () => {
-      try {
-        // const API_KEY = "LyXmyl9nY7CVVj1wzxnSpVwv3cptUaox";
-        const response = await fetch(
-          `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=&rating=g`
-        );
-        const data = await response.json();
-        setBanner(data.data.images.original.url); 
-      } catch (error) {
-        console.error("Error fetching GIF:", error);
-      }
-    };
 
-    fetchUser();
-    fetchGif();
   }, []);
 
   const images = [

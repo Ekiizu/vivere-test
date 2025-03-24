@@ -3,7 +3,7 @@ import "../App.css";
 
 const Card = ({ initialSize, isProfile }) => {
   const size = initialSize; 
-  // updates from Profile
+  // updates from Profile instead 
   const images = [
     "images/ozzy.jpg",
     "images/ozzybaby.jpg",
@@ -13,6 +13,7 @@ const Card = ({ initialSize, isProfile }) => {
     "images/ozbox.jpg",
   ];
 
+  // testing masonry layout
   return (
     <div style={{ width: `${size}px` }} className="flex-1 border-2 border-primary p-4 rounded">
       {isProfile && <h2 className="text-xl font-bold mb-4 text-primary">User's Posts</h2>}

@@ -94,7 +94,7 @@
 }
 
 .masonry-grid {
-  column-count: 3; /* Default for larger screens */
+  column-count: 3;
   column-gap: 10px;
   width: 100%;
 }
@@ -111,17 +111,3 @@
   border-radius: 8px;
   display: block;
 }
-
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .masonry-grid {
-    column-count: 2; /* Reduce columns on medium screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .masonry-grid {
-    column-count: 1; /* Single column on smaller screens */
-  }
-}
-

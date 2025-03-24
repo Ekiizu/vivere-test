@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile/Profile";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
+import Edit from "./pages/profile/Edit";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/edit" element={<Edit />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
           </Routes>

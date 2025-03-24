@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react"; //had to define this for the edit
 import { useNavigate } from "react-router-dom"; 
 import "../App.css";
+import "../pages/profile/Edit"
+import "../pages/profile/Profile"
 
 const ProfileComponent = () => {
   const navigate = useNavigate(); 
+  const [isEditing, setIsEditing] = useState(false); //for editing the profile 
+  const [banner, setBanner] = useState("");
 
   const user = JSON.parse(localStorage.getItem("user"));
 
+  
   const images = [
     "images/ozzy.jpg",
     "images/ozzybaby.jpg",
@@ -17,12 +22,30 @@ const ProfileComponent = () => {
     "images/ozbox.jpg",
   ];
 
+  
+  const fetchGif = async () => {
+    try {
+      const API_KEY = "LyXmyl9nY7CVVj1wzxnSpVwv3cptUaox";
+      const response = await fetch(
+        `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=&rating=g`
+      );
+      const data = await response.json();
+      setBanner(data.data.images.original.url); 
+    } catch (error) {
+      console.error("Error fetching GIF:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGif();
+}, []);
+
   return (
     <div className="max-w-2xl mx-auto rounded-sm overflow-hidden">
       {/* Banner */}
       <div className="relative">
         <img
-          src="images/ozzypaw.jpg"
+          src={banner}
           alt="Banner"
           className="h-48 w-full object-cover"
         />
@@ -42,9 +65,13 @@ const ProfileComponent = () => {
 
         {/* Edit and Logout Buttons */}
         <div className="mt-4 flex justify-center space-x-3">
-          <button className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition">
-            Edit
-          </button>
+        <button
+      className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
+ 
+     onClick={() => navigate("/profile/edit")} // Navigate instead of modal
+     >
+     Edit
+    </button>
           <button
             className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
             onClick={() => navigate("/login")} 
