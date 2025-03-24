@@ -83,13 +83,15 @@ function Home() {
         {/* for each post return post, j is the current iteration  */}
         {posts.map(({ id, user_id, description }, j) => {
           return (
-            <div className="bg-base hover:bg-base-300 border-2 rounded border-secondary m-5">
-              <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center">
+            <div className="bg-base hover:bg-base-300 border-2 rounded border-secondary m-5" >
+              <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" onClick={() => {
+                  navigate(`/posts/${id}`, {replace: false})
+                }}>
               {postImages.map(({id, image_link, post_id}, k) => {
                 console.log(postImages[k])
                 if(postImages[k].post_id == posts[j].id) {
                   return(
-                    <img src={postImages[k].image_link} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
+                    <img loading="lazy" src={postImages[k].image_link} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
                   )
                 }
               })}
