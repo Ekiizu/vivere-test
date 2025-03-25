@@ -83,7 +83,7 @@ function Home() {
         {/* for each post return post, j is the current iteration  */}
         {posts.map(({ id, user_id, description }, j) => {
           return (
-            <div className="bg-base hover:bg-base-300 border-2 rounded border-secondary m-5" onClick={() => {
+            <div className="bg-base hover:bg-base-300 md:border-2 rounded border-secondary md:m-5" onClick={() => {
               navigate(`/posts/${id}`, {replace: false})
             }}>
               <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
