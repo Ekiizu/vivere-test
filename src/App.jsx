@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import Profile from "./pages/profile/Profile";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+
+import PostView from "./pages/posts/view";
+
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
@@ -26,6 +29,8 @@ function App() {
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<Edit />} />
+            <Route path="/posts/:id" element={<PostView />} />
+
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
           </Routes>
