@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 import "../App.css";
 
 const Sidebar = () => {
-  const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
-  const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  // const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
+  // const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [theme, setTheme] = useState(
     localStorage.getItem('currentTheme') || 'default'
   );
 
-  const toggleNotifModal = () => {
-    setIsNotifModalOpen(!isNotifModalOpen);
-  };
+  // const toggleNotifModal = () => {
+  //   setIsNotifModalOpen(!isNotifModalOpen);
+  // };
 
-  const togglePostModal = () => {
-    setIsPostModalOpen(!isPostModalOpen);
-  };
+  // const togglePostModal = () => {
+  //   setIsPostModalOpen(!isPostModalOpen);
+  // };
 
   const changeTheme = (e) => {
     setTheme(e.target.value);
@@ -46,22 +46,22 @@ const Sidebar = () => {
           </Link>
 
           {/* Notification Button */}
-          <button 
-            onClick={toggleNotifModal}
+          <button
             className="flex items-center justify-center btn btn-ghost"
+            onClick={() => document.getElementById("my_modal_1").showModal()} // Open the notification modal by id
           >
             <i className="fas fa-bell fa-xl" />
           </button>
-          {isNotifModalOpen && <NotifModal isOpen={isNotifModalOpen} toggleModal={toggleNotifModal} />}
+          <NotifModal id="notif_modal" />
 
           {/* Post Button */}
-          <button 
-            onClick={togglePostModal}
+          <button
             className="flex items-center justify-center btn btn-ghost"
+            onClick={() => document.getElementById("my_modal_3").showModal()} // Open the post modal by id
           >
             <i className="fas fa-square-plus fa-xl" />
           </button>
-          {isPostModalOpen && <PostModal isOpen={isPostModalOpen} toggleModal={togglePostModal} />}
+          <PostModal id="post_modal" />
         </div>
       </div>
 

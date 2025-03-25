@@ -17,10 +17,10 @@ export default function NotifModal() {
 
     return (
         <>
-           
+{/*            
             <button className="btn" onClick={handleModal}>
                 Open Notif Modal
-            </button>
+            </button> */}
 
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
