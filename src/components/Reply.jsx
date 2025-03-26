@@ -6,12 +6,14 @@ import "../App.css";
 const Reply = (replyInfo) => {
     const info = replyInfo.replyInfo;
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
+    const token = localStorage.getItem("token")
+
     
     const [poster, setPoster] = useState()
     useEffect(() => {
         axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/users/${info.user_id}`, {
             headers: {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then(response => {

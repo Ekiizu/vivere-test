@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 function Edit() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user")); 
+  const token = localStorage.getItem("token")
 
-  
   const [form, setForm] = useState({
     username: user.username || "",
     password: user.password || "",
     bio: user.bio || "",
     colour1: user.colour1 || "#ffffff",
     colour2: user.colour2 || "#ffffff",
+    banner_url: user.banner_url || "",
   });
 
   // Handle form input changes
@@ -35,7 +36,7 @@ function Edit() {
         form,
         {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -43,18 +44,18 @@ function Edit() {
       console.log("Profile updated successfully:", response.data);
 
       
-    //   localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("user", JSON.stringify(response.data.data));
 
       // Navigate back to the profile page
       navigate("/profile");
     } catch (err) {
       console.error("Error updating profile:", err);
-      alert("Failed to update profile. Please try again.");
+      alert(err.response.data.message);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-md mx-auto mt-24 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4">Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         {/* Username Input */}
@@ -65,19 +66,6 @@ function Edit() {
             name="username"
             className="input input-bordered w-full"
             value={form.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Password Input */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="input input-bordered w-full"
-            value={form.password}
             onChange={handleChange}
             required
           />
@@ -118,6 +106,33 @@ function Edit() {
             onChange={handleChange}
           />
         </div>
+
+        {/* Username Input */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Banner</label>
+          <input
+            type="text"
+            name="banner_url"
+            className="input input-bordered w-full"
+            value={form.banner_url}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Password Input */}
+        <div className="mb-4">
+          <label className="block text-lg font-medium mb-1">Enter Password to Complete Change</label>
+          <input
+            type="password"
+            name="password"
+            className="input input-bordered w-full"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        
 
         {/* Submit and Cancel Buttons */}
         <div className="flex justify-end space-x-2">

@@ -8,6 +8,8 @@ function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user")) // logged in user details
+  const token = localStorage.getItem("token")
+
   const [posts, setPosts] = useState(null)
   const [postImages, setPostImages] = useState(null)
 
@@ -22,7 +24,7 @@ function Home() {
   useEffect(() => {
     axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts`, {
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       }
     })
       .then(res => {

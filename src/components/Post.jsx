@@ -6,14 +6,15 @@ import "../App.css";
 const Post = (postInfo) => {
     const info = postInfo.postInfo;
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
-    
+    const token = localStorage.getItem("token")
+
     const [poster, setPoster] = useState()
     const [postImages, setPostImages] = useState(null)
 
     useEffect(() => {
         axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/users/${info.user_id}`, {
             headers: {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then(response => {
@@ -26,7 +27,7 @@ const Post = (postInfo) => {
     useEffect(() => {
         axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images?post_id=${info.id}`, {
           headers: {
-            Authorization: `Bearer ${user.token}`
+            Authorization: `Bearer ${token}`
           }
         })
           .then(res => {
