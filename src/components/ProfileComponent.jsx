@@ -1,54 +1,39 @@
-import React, { useState, useEffect } from "react"; //had to define this for the edit
-import { useNavigate } from "react-router-dom"; 
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
-import "../pages/profile/Edit"
-import "../pages/profile/Profile"
+import "../pages/profile/Edit";
+import "../pages/profile/Profile";
 
 const ProfileComponent = () => {
-  const navigate = useNavigate(); 
-  const [isEditing, setIsEditing] = useState(false); //for editing the profile 
+  const navigate = useNavigate();
   const [banner, setBanner] = useState("");
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-  
-  const images = [
-    "images/ozzy.jpg",
-    "images/ozzybaby.jpg",
-    "images/ozbox.jpg",
-    "images/ozzybed.jpg",
-    "images/ozzycute.jpg",
-    "images/ozzybaby.jpg",
-    "images/ozbox.jpg",
-  ];
-
-  
-  const fetchGif = async (persona) => {
+ //Changing to Tenor API so users can search and change the profile banners
+  const fetchGif = async () => {
     try {
-      const API_KEY = "LyXmyl9nY7CVVj1wzxnSpVwv3cptUaox";
+      const API_KEY = "AIzaSyBh2lFfxgUV--YM1TD22h53wqlsX2aeGVQ"; 
       const response = await fetch(
-        `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${persona}=&rating=g`
+        `https://tenor.googleapis.com/v2/search?q=cat&key=${API_KEY}&limit=1`
       );
       const data = await response.json();
-      setBanner(data.data.images.original.url); 
+      setBanner(data.results[0]?.media_formats?.gif?.url || "images/default-banner.jpg"); 
     } catch (error) {
       console.error("Error fetching GIF:", error);
+      setBanner("images/ozzybed.jpg"); 
     }
   };
 
   useEffect(() => {
-    fetchGif("persona");
-}, []);
+    fetchGif("");
+  }, []);
 
   return (
     <div className="max-w-2xl mx-auto rounded-sm overflow-hidden">
       {/* Banner */}
       <div className="relative">
-        <img
-          src={banner}
-          alt="Banner"
-          className="h-48 w-full object-cover"
-        />
+        <img src={banner} alt="Banner" className="h-48 w-full object-cover" />
         <img
           src="images/ozzy.jpg"
           alt="User Profile"
@@ -56,25 +41,26 @@ const ProfileComponent = () => {
         />
       </div>
 
-      <div style={{background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`}} className="p-6 min-h-180 text-center"> 
-        {/* hardcoded the size of the gradient for now */}
-        {/* User Info */}
-        {console.log(user.username)}
+      <div
+        style={{
+          background: `linear-gradient(to bottom, ${user.colour1}, ${user.colour2})`,
+        }}
+        className="p-6 min-h-180 text-center"
+      >
         <h1 className="text-2xl font-bold">{user.username}</h1>
         <h3 className="text">@Ekiizu</h3>
 
         {/* Edit and Logout Buttons */}
         <div className="mt-4 flex justify-center space-x-3">
-        <button
-      className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
- 
-     onClick={() => navigate("/profile/edit")} // Navigate instead of modal
-     >
-     Edit
-    </button>
           <button
             className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
-            onClick={() => navigate("/login")} 
+            onClick={() => navigate("/profile/edit")}
+          >
+            Edit
+          </button>
+          <button
+            className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
+            onClick={() => navigate("/login")}
           >
             Logout
           </button>
@@ -97,3 +83,5 @@ const ProfileComponent = () => {
 };
 
 export default ProfileComponent;
+
+
