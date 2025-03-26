@@ -27,7 +27,7 @@ const Comment = (commentInfo) => {
         <div className="">
         <div className="flex">
             <div className="pr-3">
-                <img loading="lazy" src={`https://api.dicebear.com/9.x/adventurer/svg?seed=%7B${info.user_id}%7D&radius=50&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`} width="64" height="64"/> 
+                <img loading="lazy" src={`https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=${info.user_id}&radius=25&backgroundColor=b6e3f4,ffd5dc,c0aede,ffffff,d1d4f9,ffdfbf&backgroundType=gradientLinear&frecklesProbability=25`} width="64" height="64"/> 
             </div>
             <div>
                 <h2 className="card-title">{poster.username}</h2>
