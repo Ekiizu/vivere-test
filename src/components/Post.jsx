@@ -8,6 +8,8 @@ const Post = (postInfo) => {
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
     
     const [poster, setPoster] = useState()
+    const [postImages, setPostImages] = useState(null)
+
     useEffect(() => {
         axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/users/${info.user_id}`, {
             headers: {
@@ -20,14 +22,36 @@ const Post = (postInfo) => {
             })
             .catch(err => console.log(err))
     }, []);
-    
 
-    if (poster != null) {
+    useEffect(() => {
+        axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images?post_id=${info.id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          }
+        })
+          .then(res => {
+            console.log(res)
+            setPostImages(res.data.data)
+          })
+          .catch(err => console.log(err))
+      }, [])
+    
+    // console.log(images)
+    if (poster != null && postImages != null) {
     return (
         <div className="">
+        <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
+              {postImages.map(({id, image_link, post_id}, k) => {
+                if(postImages[k].post_id == info.id) {
+                  return(
+                    <img loading="lazy" src={postImages[k].image_link} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
+                  )
+                }
+              })}
+        </div>
         <div className="flex p-8 ">
             <div className="pr-3">
-                <img loading="lazy" src={`https://api.dicebear.com/9.x/adventurer/svg?seed=%7B${info.user_id}%7D&radius=50&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`} width="64" height="64"/> 
+                <img loading="lazy" src={`https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=${info.user_id}&radius=25&backgroundColor=b6e3f4,ffd5dc,c0aede,ffffff,d1d4f9,ffdfbf&backgroundType=gradientLinear&frecklesProbability=25`} width="64" height="64"/> 
             </div>
             <div>
                 <h2 className="card-title">{poster.username}</h2>
