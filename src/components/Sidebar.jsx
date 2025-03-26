@@ -1,30 +1,23 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import NotifModal from "./NotifModal";
 import PostModal from "./PostModal";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-const Sidebar = () => {
-  // const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
-  // const [isPostModalOpen, setIsPostModalOpen] = useState(false);
-  const [theme, setTheme] = useState(
-    localStorage.getItem('currentTheme') || 'default'
-  );
-
-  // const toggleNotifModal = () => {
-  //   setIsNotifModalOpen(!isNotifModalOpen);
-  // };
-
-  // const togglePostModal = () => {
-  //   setIsPostModalOpen(!isPostModalOpen);
-  // };
+const Sidebar = ({ setPostStyle }) => {
+  const [theme, setTheme] = useState(localStorage.getItem("currentTheme") || "default");
 
   const changeTheme = (e) => {
     setTheme(e.target.value);
   };
 
+  const togglePostStyle = () => {
+    setPostStyle((prevStyle) => (prevStyle === "full" ? "masonry" : "full")); 
+    console.log(`Post style changed to: ${prevStyle === "full" ? "masonry" : "full"}`); // logs the new style
+  };
+
   useEffect(() => {
-    localStorage.setItem('currentTheme', theme);
+    localStorage.setItem("currentTheme", theme);
   }, [theme]);
 
   return (
@@ -65,6 +58,16 @@ const Sidebar = () => {
         </div>
       </div>
 
+      {/* Post Style Switcher */}
+      <div className="mt-6">
+        <button
+          className="btn btn-primary w-full"
+          onClick={togglePostStyle} // Toggle post style when you click
+        >
+          Toggle Post Style
+        </button>
+      </div>
+
       {/* Bottom Section - Settings Icon */}
       <div>
         <div className="dropdown justify-center mb-72" onChange={changeTheme}>
@@ -75,31 +78,81 @@ const Sidebar = () => {
               height="12px"
               className="inline-block h-2 w-2 fill-current opacity-60"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 2048 2048">
+              viewBox="0 0 2048 2048"
+            >
               <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
             </svg>
           </div>
           <ul tabIndex={0} className="dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl">
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="System Default" checked={theme === "default"} value="default" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="System Default"
+                checked={theme === "default"}
+                value="default"
+              />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Light" checked={theme === "light"} value="light" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="Light"
+                checked={theme === "light"}
+                value="light"
+              />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Dark" checked={theme === "coffee"} value="coffee" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="Dark"
+                checked={theme === "coffee"}
+                value="coffee"
+              />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" checked={theme === "retro"} value="retro" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="Retro"
+                checked={theme === "retro"}
+                value="retro"
+              />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" checked={theme === "cyberpunk"} value="cyberpunk" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="Cyberpunk"
+                checked={theme === "cyberpunk"}
+                value="cyberpunk"
+              />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" checked={theme === "valentine"} value="valentine" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="Valentine"
+                checked={theme === "valentine"}
+                value="valentine"
+              />
             </li>
             <li>
-              <input type="radio" name="theme-dropdown" className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" checked={theme === "aqua"} value="aqua" />
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+                aria-label="Aqua"
+                checked={theme === "aqua"}
+                value="aqua"
+              />
             </li>
           </ul>
         </div>
@@ -113,6 +166,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-//still need to figure out how to connect modals onto buttons directly 18TH MARCH 

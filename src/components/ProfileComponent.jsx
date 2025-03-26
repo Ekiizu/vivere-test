@@ -18,7 +18,7 @@ const ProfileComponent = () => {
         `https://tenor.googleapis.com/v2/search?q=cat&key=${API_KEY}&limit=1`
       );
       const data = await response.json();
-      setBanner(data.results[0]?.media_formats?.gif?.url || "images/default-banner.jpg"); 
+      setBanner(data.results[0]?.media_formats?.gif?.url || "images/ozzy.jpg"); 
     } catch (error) {
       console.error("Error fetching GIF:", error);
       setBanner("images/ozzybed.jpg"); 

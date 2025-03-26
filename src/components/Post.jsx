@@ -76,3 +76,5 @@ const Post = (postInfo) => {
 }
 
 export default Post;
+
+//need to add if statment so that depending on if you are toggled onto a full or masonry layout different information will shwo up  26TH MARCH

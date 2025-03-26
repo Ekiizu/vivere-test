@@ -4,7 +4,7 @@ import "../App.css";
 import Post from "../components/Post";
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+function Home({ postStyle }) { //added as a prop to toggle the post styles
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user")) // logged in user details
@@ -31,50 +31,9 @@ function Home() {
       .catch(err => console.log(err))
   }, [])
 
-  // useEffect(() => {
-  //   axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images`, {
-  //     headers: {
-  //       Authorization: `Bearer ${user.token}`
-  //     }
-  //   })
-  //     .then(res => {
-  //       setPostImages(res.data.data)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [])
-
-  const images = [
-    "images/ozzy.jpg",
-    "images/ozzybaby.jpg",
-    "images/ozbox.jpg",
-    "images/ozzybed.jpg",
-    "images/ozzycute.jpg",
-    "images/ozzybaby.jpg",
-    "images/ozbox.jpg",
-    "images/ozzy.jpg",
-    "images/ozzybaby.jpg",
-    "images/ozbox.jpg",
-    "images/ozzybed.jpg",
-    "images/ozzycute.jpg",
-    "images/ozzybaby.jpg",
-    "images/ozbox.jpg",
-  ];
-
-  // return (
-  //   <div>
-  //     {/* Main Content Area */}
-  //     <div className="ml-48 mt-16 flex-1 p-5">
-  //       {/* Masonry Image Layout with Smaller Images */}
-  //       <Card />
-  //       <Post />
-  //       {/* <button className="btn" onClick={toggleModal}>Open Notification Modal</button> */} 
-  //       {/* testing */}
-  //     </div>
-  //     <NotifModal isOpen={isModalOpen} toggleModal={toggleModal} />
-  //   </div>
-  // );
 
   if(posts != null) {
+    if (postStyle === "full") {
     return posts && (
 
       // this is to confine the post area within the right space
@@ -89,18 +48,39 @@ function Home() {
               
               <Post postInfo={posts[j]}/>
             </div>
-          )          
+          );         
         })}
       </div>
       </div>
-    )
+    );
   }
-  else {
+  else if (postStyle === "masonry") {
+
+  
     return (
-      <div class="loader"></div>
-    )
+      <div className="ml-48 mt-16 flex-1 p-5">
+        <div className="masonry-grid">
+          {posts.map((post, index) => (
+            <div
+              key={post.id}
+              className="masonry-item relative group overflow-hidden rounded-lg"
+              onClick={() => {
+                navigate(`/posts/${post.id}`, { replace: false });
+              }}
+            >
+              <Post postInfo={post} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
-}
+} else {
+      <div class="loader"></div> 
+    }
+    
+  }
+
 
 export default Home;
 
