@@ -10,14 +10,12 @@ const ProfileComponent = ({ userProfile }) => {
 
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
-
-
-
   // Determines which user data to display
   const user = userProfile || loggedInUser;
 
   const [banner, setBanner] = useState(user.banner_url);
 
+  console.log(user)
 
  //Changing to Tenor API so users can search and change the profile banners
   // const fetchGif = async () => {
@@ -64,7 +62,7 @@ const ProfileComponent = ({ userProfile }) => {
       >
         <h1 className="text-2xl font-bold">{user.username}</h1>
         {/* <h3 className="text">@Ekiizu</h3> */}
-
+        {console.log(userProfile)}
         {/* Edit and Logout Buttons */}
         {!userProfile && (
         <div className="mt-4 flex justify-center space-x-3">
