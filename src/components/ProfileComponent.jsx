@@ -10,11 +10,12 @@ const ProfileComponent = ({ userProfile }) => {
 
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
-  const [banner, setBanner] = useState(user.banner_url);
 
 
   // Determines which user data to display
   const user = userProfile || loggedInUser;
+
+  const [banner, setBanner] = useState(user.banner_url);
 
 
  //Changing to Tenor API so users can search and change the profile banners
