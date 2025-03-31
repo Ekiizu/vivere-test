@@ -5,6 +5,7 @@ import Profile from "./pages/profile/Profile";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import PostView from "./pages/posts/view";
+import ViewProfile from "./pages/profile/View";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
@@ -28,12 +29,13 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home postStyle={postStyle} />} /> 
-            <Route path="/profile/:id" element={<Profile />} />
+            {/* <Route path="/profile/:id" element={<Profile />} /> */} 
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<Edit />} />
             <Route path="/posts/:id" element={<PostView />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
+             <Route path="/profile/:id" element={<ViewProfile />} />
           </Routes>
         </div>
       </div>

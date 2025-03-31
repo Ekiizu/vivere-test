@@ -3,12 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 import "../pages/profile/Edit";
 import "../pages/profile/Profile";
+import "../pages/profile/View";
 
-const ProfileComponent = () => {
+const ProfileComponent = ({ userProfile }) => {
   const navigate = useNavigate();
-  const [banner, setBanner] = useState("");
+  const [banner, setBanner] = useState();
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
+  // Determines which user data to display
+  const user = userProfile || loggedInUser;
+
 
  //Changing to Tenor API so users can search and change the profile banners
   const fetchGif = async () => {
@@ -51,6 +56,7 @@ const ProfileComponent = () => {
         <h3 className="text">@Ekiizu</h3>
 
         {/* Edit and Logout Buttons */}
+        {!userProfile && (
         <div className="mt-4 flex justify-center space-x-3">
           <button
             className="px-4 py-2 bg-accent text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
@@ -65,6 +71,7 @@ const ProfileComponent = () => {
             Logout
           </button>
         </div>
+        )}
 
         {/* Social Links */}
         <div className="flex justify-center space-x-6 mt-4 text-primary">

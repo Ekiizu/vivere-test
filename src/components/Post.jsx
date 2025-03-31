@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 // This is just the text and info for the posts. Images will be added in the home page. To avoid unnecessary API calls
@@ -54,7 +55,9 @@ const Post = (postInfo) => {
                 <img loading="lazy" src={`https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=${info.user_id}&radius=25&backgroundColor=b6e3f4,ffd5dc,c0aede,ffffff,d1d4f9,ffdfbf&backgroundType=gradientLinear&frecklesProbability=25`} width="64" height="64"/> 
             </div>
             <div>
-                <h2 className="card-title">{poster.username}</h2>
+                <Link to={`/profile/${poster.id}`} className="card-title text-primary-500 hover:underline">
+                  {poster.username}
+                </Link>
                 <p>{info.description}</p>
             </div>
             
