@@ -8,6 +8,8 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user")) // logged in user details
+  const token = localStorage.getItem("token")
+
   const [posts, setPosts] = useState(null)
   const [postImages, setPostImages] = useState(null)
 
@@ -22,7 +24,7 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
   useEffect(() => {
     axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts`, {
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       }
     })
       .then(res => {
@@ -42,8 +44,10 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
         {/* for each post return post, j is the current iteration  */}
         {posts.map(({ id, user_id, description }, j) => {
           return (
-            <div className="bg-base hover:bg-base-300 md:border-2 rounded border-secondary md:m-5" onClick={() => {
-              navigate(`/posts/${id}`, {replace: false})
+            <div className="bg-base hover:bg-base-300 md:border-2 rounded border-secondary md:m-5" onClick={(e) => {
+              if(e.target.id != "likeButton") {
+                navigate(`/posts/${id}`, {replace: false})
+              }
             }}>
               
               <Post postInfo={posts[j]}/>

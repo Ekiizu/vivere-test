@@ -12,6 +12,8 @@ function ViewPost() {
   const {id} = useParams();
 
   const user = JSON.parse(localStorage.getItem("user")) // logged in user details
+  const token = localStorage.getItem("token")
+
   const [post, setPost] = useState(null)
   const [postImages, setPostImages] = useState(null)
   const [comments, setComments] = useState(null)
@@ -27,7 +29,7 @@ function ViewPost() {
   useEffect(() => {
     axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts/${id}`, {
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       }
     })
       .then(res => {
@@ -37,17 +39,17 @@ function ViewPost() {
   }, [])
 
 //   get images
-  useEffect(() => {
-    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images`, {
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      }
-    })
-      .then(res => {
-        setPostImages(res.data.data)
-      })
-      .catch(err => console.log(err))
-  }, [])
+  // useEffect(() => {
+  //   axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   })
+  //     .then(res => {
+  //       setPostImages(res.data.data)
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [])
 
 //   get comments
 //   async function fetchPostComments() {
@@ -76,7 +78,7 @@ function ViewPost() {
   useEffect(() => {
     axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments`, {
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Bearer ${token}`
       }
     })
       .then(res => {
@@ -84,7 +86,7 @@ function ViewPost() {
         setComments(res.data.data.filter((comment) => (comment.post_id == id)))
         return axios.get (`https://viverebackend-main-girysq.laravel.cloud/api/replies`, {
             headers: {
-              Authorization: `Bearer ${user.token}`
+              Authorization: `Bearer ${token}`
             }
           })
       })
@@ -100,14 +102,14 @@ function ViewPost() {
 
   
 
-  if(post != null && postImages != null) {
+  if(post != null ) {
     return post && (
 
       // this is to confine the post area within the right space
       <div className="ml-48 mt-16 flex-1 p-5"> 
       <div className="flex-1 border-2 border-primary p-4 rounded">
             <div className=" border-2 rounded border-secondary m-5">
-              <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center">
+              {/* <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center">
               {postImages.map(({id, image_link, post_id}, k) => {
                 if(postImages[k].post_id == post.id) {
                   return(
@@ -115,7 +117,7 @@ function ViewPost() {
                   )
                 }
               })}
-              </div>
+              </div> */}
               <Post postInfo={post}/>
               
               

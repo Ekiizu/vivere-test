@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
             })
             .then((res) => {
                 setToken(res.data.token);
-                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("token", res.data.data.token);
             })
             .catch((err) => {
                 console.error(err);

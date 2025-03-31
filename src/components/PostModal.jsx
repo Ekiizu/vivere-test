@@ -6,6 +6,7 @@ import "../App.css";
 export default function PostModal() {
     // State to store the form data (header, description, image)
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
+    const token = localStorage.getItem("token")
 
     // const [header, setHeader] = useState("");
     const [userId, setUserId] = useState(user.id)
@@ -39,7 +40,7 @@ export default function PostModal() {
         console.log(form)
         axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/posts`, form, {
             headers: {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             }
         })
         .then((res) => {

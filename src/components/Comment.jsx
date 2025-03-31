@@ -5,13 +5,14 @@ import "../App.css";
 // This is just the text and info for the posts. Images will be added in the home page. To avoid unnecessary API calls
 const Comment = (commentInfo) => {
     const info = commentInfo.commentInfo;
+    const token = localStorage.getItem("token")
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
     
     const [poster, setPoster] = useState()
     useEffect(() => {
         axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/users/${info.user_id}`, {
             headers: {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then(response => {
