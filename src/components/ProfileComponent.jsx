@@ -12,6 +12,7 @@ const ProfileComponent = ({ userProfile }) => {
 
 
 
+
   // Determines which user data to display
   const user = userProfile || loggedInUser;
 
