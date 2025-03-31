@@ -7,7 +7,7 @@ const Navbar = () => {
   
   const navigate = useNavigate();
   return (
-    <div className="fixed top-0 left-48 w-[calc(100%-12rem)] bg-primary shadow-md p-4 flex justify-between">
+    <div className="fixed top-0 left-48 w-[calc(100%-12rem)] bg-base shadow-md p-4 flex justify-between">
       <div>
       <a className="btn btn-ghost text-xl">Following</a>
       <a className="btn btn-ghost text-xl">Popular</a>

@@ -31,7 +31,7 @@ const Post = (postInfo) => {
           }
         })
           .then(res => {
-            console.log(res)
+            // console.log(res)
             setPostImages(res.data.data)
           })
           .catch(err => console.log(err))
@@ -40,7 +40,7 @@ const Post = (postInfo) => {
     // console.log(images)
     if (poster != null && postImages != null) {
     return (
-        <div className="">
+        <div id="post" className="">
         <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
               {postImages.map(({id, image_link, post_id}, k) => {
                 if(postImages[k].post_id == info.id) {
@@ -61,11 +61,36 @@ const Post = (postInfo) => {
             
         </div>
             {/* buttons for like, comment, etc. */}
-            <div class="flex justify-end">
-            <button class="btn mb-4 mr-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-[1.2em]"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+            {/* <div id="likeButton" class="flex justify-end">
+            <button id="likeButton" class="btn mb-4 mr-4">
+              <label id="likeButton" className="swap">
+              <input id="likeButton" type="checkbox" className="btn mb-4 mr-4"/>
+              <div id="likeButton" className="swap-on">ON</div>
+              <div id="likeButton" className="swap-off">OFF</div>
+            </label>            
             </button>
+            </div> */}
+
+            
+
+          <div className="flex justify-end p-4">
+          <label id="likeButton" className=" mr-8 swap">
+            <input id="likeButton" type="checkbox" className=""/>
+            
+            
+            <div id="likeButton" className="swap-on">
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-primary" viewBox="0 0 48 48" width="48" height="48">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke-width="2"/>
+            </svg>
+
             </div>
+            <div id="likeButton" className="swap-off">
+            <svg xmlns="http://www.w3.org/2000/svg" className="fill-primary stroke-primary" viewBox="0 0 48 48" width="48" height="48">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke-width="2"/>
+            </svg>
+            </div>
+          </label>
+          </div>
         </div>
     )
     }

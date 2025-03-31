@@ -85,8 +85,11 @@ function Home() {
         {/* for each post return post, j is the current iteration  */}
         {posts.map(({ id, user_id, description }, j) => {
           return (
-            <div className="bg-base hover:bg-base-300 md:border-2 rounded border-secondary md:m-5" onClick={() => {
-              navigate(`/posts/${id}`, {replace: false})
+            <div className="bg-base hover:bg-base-300 md:border-2 rounded border-secondary md:m-5" onClick={(e) => {
+              console.log(e.target)
+              if(e.target.id != "likeButton") {
+                navigate(`/posts/${id}`, {replace: false})
+              }
             }}>
               
               <Post postInfo={posts[j]}/>
