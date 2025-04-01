@@ -60,7 +60,43 @@ const ViewProfile = () => {
     fetchUserData();
   }, [id]);
 
-  
+     // Start resizing
+     const handleMouseDown = (e) => {
+        setIsResizing(true);
+        setStartX(e.clientX); // Record the initial position of the mouse
+        document.body.style.userSelect = "none"; // disables selecting
+      };
+    
+      // Resizing function
+      const handleMouseMove = (e) => {
+        if (!isResizing) return;
+    
+        const movement = e.clientX - startX; // Difference from the starting position
+        const newSize = size - movement; // Add the movement to the initial size
+    
+        // constrain resizing
+        if (newSize > 275 && newSize < window.innerWidth * 0.4) {
+          console.log(newSize);
+          setSize(newSize);
+        }
+      };
+    
+      // Stop resizing
+      const handleMouseUp = () => {
+        setIsResizing(false);
+        document.body.style.userSelect = "auto"; // re-enables selecting
+      };
+    
+      useEffect(() => {
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+    
+        return () => {
+          document.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseup", handleMouseUp);
+        };
+      }, [isResizing]);
+    
 
   return (
     <div className="ml-48 mt-16 p-5 flex gap-6">

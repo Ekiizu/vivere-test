@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "../App.css";
 
 // This is just the text and info for the posts. Images will be added in the home page. To avoid unnecessary API calls
-const Post = (postInfo) => {
-    const info = postInfo.postInfo;
+const Post = ({ postInfo , postStyle }) => {
+    const info = postInfo || {} ; //THIS WAS THE ISSUE
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
     const token = localStorage.getItem("token")
 
@@ -52,7 +52,8 @@ const Post = (postInfo) => {
         .then(res => {
           // console.log(res.data.data)
           setLikes(res.data.data)
-          setLikeCount(likes.length)
+          if (res.data.data){
+          setLikeCount(res.data.data.length);}
         })
         .catch(err => console.log(err))
     }, [])
@@ -105,11 +106,29 @@ const Post = (postInfo) => {
 
         likeCount -= 1
       }
+    };
+
+
+      // Render only images for masonry layout
+    if (postStyle === "masonry" && postImages != null) {
+      return (
+        
+        <div className="masonry-item">
+          {postImages.map(({ id, image_link }) => (
+            <img
+              key={id}
+              src={image_link}
+              alt="Post"
+              className="w-full h-auto rounded object-cover"
+            />
+          ))}
+        </div>
+      );
     }
 
 
     // console.log(images)
-    if (poster != null && postImages != null && hasLiked != null) {
+    if ( postStyle === "full" && poster != null && postImages != null && hasLiked != null) {
     return (
         <div id="post" className="">
         <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
@@ -188,4 +207,3 @@ const Post = (postInfo) => {
 
 export default Post;
 
-//need to add if statment so that depending on if you are toggled onto a full or masonry layout different information will shwo up  26TH MARCH

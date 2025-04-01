@@ -50,7 +50,7 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
               }
             }}>
               
-              <Post postInfo={posts[j]}/>
+              <Post postInfo={posts[j]} postStyle="full"/>
             </div>
           );         
         })}
@@ -72,7 +72,7 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
                 navigate(`/posts/${post.id}`, { replace: false });
               }}
             >
-              <Post postInfo={post} />
+              <Post postInfo={post} postStyle={"masonry"}/>
             </div>
           ))}
         </div>
