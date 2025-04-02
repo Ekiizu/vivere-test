@@ -94,15 +94,29 @@
 }
 
 .masonry-grid {
-  column-count: 3;
+  column-count: 1;
   column-gap: 10px;
   width: 100%;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-count: 2; /* 2 columns for medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3; /* 3 columns for large screens */
+  }
 }
 
 .masonry-item {
   display: inline-block;
   width: 100%;
   margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
   break-inside: avoid; /* Prevents column breaks */
 }
 
@@ -160,4 +174,10 @@
 
 @keyframes l39 {
   100%{transform: translateY(-100%)}
+}
+
+iframe {
+  max-width: 100%;
+  border: none;
+  margin-bottom: 1rem;
 }

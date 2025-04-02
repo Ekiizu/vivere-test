@@ -114,15 +114,19 @@ const Post = ({ postInfo , postStyle }) => {
       return (
         
         <div className="masonry-item">
+          
           {postImages.map(({ id, image_link }) => (
             <img
               key={id}
               src={image_link}
               alt="Post"
-              className="w-full h-auto rounded object-cover"
+              className="object-cover w-full rounded-lg transform transition duration-300 ease-in-out group-hover:scale-105"
+
+              
             />
           ))}
         </div>
+        
       );
     }
 

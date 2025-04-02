@@ -5,13 +5,40 @@ import "../pages/profile/Edit";
 import "../pages/profile/Profile";
 import "../pages/profile/View";
 
+const parseBio = (bio) => {
+  // YouTube links
+  const youtubeRegex = /https?:\/\/(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/g;
+
+  // Spotify links
+  const spotifyRegex = /https?:\/\/open\.spotify\.com\/(track|playlist|album)\/([a-zA-Z0-9]+)/g;
+
+  // YouTube links with embed iframes
+  bio = bio.replace(
+    youtubeRegex,
+    (match, p1, videoId) =>
+      `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`
+  );
+
+  // Spotify links with embed iframes
+  bio = bio.replace(
+    spotifyRegex,
+    (match, type, id) =>
+      `<iframe width="560" height="315" src="https://open.spotify.com/embed/${type}/${id}" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+  );
+
+  return bio;
+};
+
 const ProfileComponent = ({ userProfile }) => {
   const navigate = useNavigate();
+ 
 
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
   // Determines which user data to display
   const user = userProfile || loggedInUser;
+
+  const bioWithEmbeds = parseBio(user.bio);
 
   const [banner, setBanner] = useState(user.banner_url);
 
@@ -63,6 +90,7 @@ const ProfileComponent = ({ userProfile }) => {
         <h1 className="text-2xl font-bold">{user.username}</h1>
         {/* <h3 className="text">@Ekiizu</h3> */}
         {console.log(userProfile)}
+       
         {/* Edit and Logout Buttons */}
         {!userProfile && (
         <div className="mt-4 flex justify-center space-x-3">
@@ -90,7 +118,7 @@ const ProfileComponent = ({ userProfile }) => {
 
         {/* Bio Section */}
         <div className="mt-6 p-4 border-t">
-          <p className="text-sm">{user.bio}</p>
+          <div dangerouslySetInnerHTML={{ __html: bioWithEmbeds }} />
         </div>
       </div>
     </div>

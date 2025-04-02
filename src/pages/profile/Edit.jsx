@@ -79,6 +79,7 @@ function Edit() {
             className="textarea textarea-bordered w-full"
             value={form.bio}
             onChange={handleChange}
+            placeholder="Write your bio here. You can also paste Spotify or YouTube links!!"
             required
           />
         </div>
