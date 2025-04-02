@@ -68,6 +68,8 @@ const Sidebar = ({ setPostStyle }) => {
         </button>
       </div>
 
+      <input type="checkbox" defaultChecked className="toggle" />
+
       {/* Bottom Section - Settings Icon */}
       <div>
         <div className="dropdown justify-center mb-72">
