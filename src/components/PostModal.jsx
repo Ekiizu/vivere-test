@@ -21,7 +21,7 @@ export default function PostModal() {
 
     const [imageForm, setImageForm] = useState({
         post_id: "",
-        image_link: null
+        image_link: ""
     })
 
     // Handle input changes
@@ -29,7 +29,7 @@ export default function PostModal() {
     // const handleDescriptionChange = (e) => setDescription(e.target.value);
 
     // Handle image upload
-    const handleImageChange = (e) => setImageForm.image_link(e.target.files[0]);
+    const handleImageChange = (e) => setImage(e.target.files[0]);
 
     // Handle form submission
     const handleSubmit = async (e) => {
@@ -47,7 +47,7 @@ export default function PostModal() {
                                     }
                                 })
                                 .then((res) => {
-                                    console.log(res.data)
+                                    // console.log(res.data)
                                     formData.append("post_id", res.data.data.id);
                                     // We treat navigating routes like navigating a file system
                                     // We've got to go up one level using '../' to get back to /doctors/{id} from here
@@ -57,6 +57,8 @@ export default function PostModal() {
                                 .catch((err) => {
                                     console.error(err)
                                 })
+
+            console.log(formData.getAll("image_link"));
                                 
             const postImage = await axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/images`, formData, {
                                 headers: {
@@ -79,7 +81,7 @@ export default function PostModal() {
             console.error('Something went wrong', e)
         } 
        
-        console.log("Post has been sent to Mars!");
+        // console.log("Post has been sent to Mars!");
         
         // Close the modal after submission
         document.getElementById("my_modal_3").close();

@@ -116,7 +116,7 @@ const Post = (postInfo) => {
               {postImages.map(({id, image_link, post_id}, k) => {
                 if(postImages[k].post_id == info.id) {
                   return(
-                    <img loading="lazy" src={postImages[k].image_link} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
+                    <img loading="lazy" src={`https://fls-9e949c6f-d763-4e78-9569-783cff590d73.laravel.cloud/images/${postImages[k].image_link}`} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
                   )
                 }
               })}
