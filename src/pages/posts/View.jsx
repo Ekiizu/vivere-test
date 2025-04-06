@@ -37,44 +37,7 @@ function ViewPost() {
       })
       .catch(err => console.log(err))
   }, [])
-
-//   get images
-  // useEffect(() => {
-  //   axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/images`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   })
-  //     .then(res => {
-  //       setPostImages(res.data.data)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [])
-
-//   get comments
-//   async function fetchPostComments() {
-
-
     
-//     let postRes = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts/${id}`, {
-//       headers: {
-//         Authorization: `Bearer ${user.token}`
-//       }
-//     })
-
-//     let commentRes = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments`, {
-//         headers: {
-//           Authorization: `Bearer ${user.token}`
-//         }
-//     })
-//     .then(res => {
-//         commentRes.data.data.filter((comment) => (comment.post_id == postRes.data.data.id))
-//         setComments(res.data.data)
-//       })
-//       .catch(err => console.log(err))
-//     }
-    
-
   useEffect(() => {
     axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments`, {
       headers: {
@@ -98,9 +61,10 @@ function ViewPost() {
       )
       .catch(err => console.log(err))
   }, [])
-
-
   
+  const handleDelete = async (postId) => {
+
+  }
 
   if(post != null ) {
     return post && (
@@ -109,16 +73,35 @@ function ViewPost() {
       <div className="ml-48 mt-16 flex-1 p-5"> 
       <div className="flex-1 border-2 border-primary p-4 rounded">
             <div className=" border-2 rounded border-secondary m-5">
-              {/* <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center">
-              {postImages.map(({id, image_link, post_id}, k) => {
-                if(postImages[k].post_id == post.id) {
-                  return(
-                    <img src={postImages[k].image_link} className="mt-4 w-full h-[400px] rounded object-cover col-span-1"/>
-                  )
-                }
-              })}
-              </div> */}
+            {user.id == post.user_id && 
+              <div className="flex justify-end dropdown dropdown-bottom dropdown-end">
+              <div tabIndex={0} role="button" className="btn bg-base-300 m-1">
+              <svg className="fill-primary stroke-primary" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / More_Horizontal"> <g id="Vector"> <path d="M17 12C17 12.5523 17.4477 13 18 13C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12Z" stroke="#none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5 12C5 12.5523 5.44772 13 6 13C6.55228 13 7 12.5523 7 12C7 11.4477 6.55228 11 6 11C5.44772 11 5 11.4477 5 12Z" stroke="#none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g> </g></svg>
+              </div>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><button onClick={() => {
+                    const confirmDelete = window.confirm("are you sure?")
+
+                    if (confirmDelete) {
+                        handleDelete(id)
+                    }
+                }}>
+                  <svg className="stroke-primary" viewBox="0 0 24 24" height="32" width="32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Edit_Pencil_Line_01"> <path id="Vector" d="M4 20.0001H20M4 20.0001V16.0001L12 8.00012M4 20.0001L8 20.0001L16 12.0001M12 8.00012L14.8686 5.13146L14.8704 5.12976C15.2652 4.73488 15.463 4.53709 15.691 4.46301C15.8919 4.39775 16.1082 4.39775 16.3091 4.46301C16.5369 4.53704 16.7345 4.7346 17.1288 5.12892L18.8686 6.86872C19.2646 7.26474 19.4627 7.46284 19.5369 7.69117C19.6022 7.89201 19.6021 8.10835 19.5369 8.3092C19.4628 8.53736 19.265 8.73516 18.8695 9.13061L18.8686 9.13146L16 12.0001M12 8.00012L16 12.0001" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg> Edit
+                </button></li>
+                <li><button onClick={() => {
+                    const confirmDelete = window.confirm("are you sure?")
+
+                    if (confirmDelete) {
+                        handleDelete(id)
+                    }
+                }}>
+                  <svg className="fill-primary stroke-primary" fill="none" height="32" width="32" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="XMLID_6_"> <g id="XMLID_11_"> <path d="M240,121.076H30V275c0,8.284,6.716,15,15,15h60h37.596c19.246,24.348,49.031,40,82.404,40c57.897,0,105-47.103,105-105 C330,172.195,290.816,128.377,240,121.076z M225,300c-41.355,0-75-33.645-75-75s33.645-75,75-75s75,33.645,75,75 S266.355,300,225,300z"></path> </g> <g id="XMLID_18_"> <path d="M240,90h15c8.284,0,15-6.716,15-15s-6.716-15-15-15h-30h-15V15c0-8.284-6.716-15-15-15H75c-8.284,0-15,6.716-15,15v45H45 H15C6.716,60,0,66.716,0,75s6.716,15,15,15h15H240z M90,30h90v30h-15h-60H90V30z"></path> </g> <g id="XMLID_23_"> <path d="M256.819,193.181c-5.857-5.858-15.355-5.858-21.213,0L225,203.787l-10.606-10.606c-5.857-5.858-15.355-5.858-21.213,0 c-5.858,5.858-5.858,15.355,0,21.213L203.787,225l-10.606,10.606c-5.858,5.858-5.858,15.355,0,21.213 c2.929,2.929,6.768,4.394,10.606,4.394c3.839,0,7.678-1.465,10.607-4.394L225,246.213l10.606,10.606 c2.929,2.929,6.768,4.394,10.607,4.394c3.839,0,7.678-1.465,10.606-4.394c5.858-5.858,5.858-15.355,0-21.213L246.213,225 l10.606-10.606C262.678,208.535,262.678,199.039,256.819,193.181z"></path> </g> </g> </g></svg> Delete
+                </button></li>
+              </ul>
+              </div>
+              }
               <Post postInfo={post}/>
+              
               
               
             </div>
@@ -135,8 +118,7 @@ function ViewPost() {
                         {replies != null &&
                         replies.map(({id, user_id, body, comment_id}, i) => {
                             if(replies[i].comment_id == comments[j].id) {
-                                console.log(replies[i])
-
+                                // console.log(replies[i])
                                 return (
                                     <div className="ml-16 py-2 ">
                                     <Reply replyInfo={replies[i]} />
