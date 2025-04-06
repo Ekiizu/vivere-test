@@ -5,6 +5,7 @@ import Post from "../../components/Post";
 import Comment from "../../components/Comment";
 import Reply from "../../components/Reply";
 import { useNavigate, useParams } from "react-router-dom";
+import ShareButton from "../../components/Buttons/ShareButton";
 
 function ViewPost() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,6 +80,7 @@ function ViewPost() {
               <svg className="fill-primary stroke-primary" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / More_Horizontal"> <g id="Vector"> <path d="M17 12C17 12.5523 17.4477 13 18 13C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12Z" stroke="#none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5 12C5 12.5523 5.44772 13 6 13C6.55228 13 7 12.5523 7 12C7 11.4477 6.55228 11 6 11C5.44772 11 5 11.4477 5 12Z" stroke="#none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g> </g></svg>
               </div>
               <ul tabIndex={0} className="dropdown-content menu bg-base-300 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><ShareButton /></li>
                 <li><button onClick={() => {
                     const confirmDelete = window.confirm("are you sure?")
 
