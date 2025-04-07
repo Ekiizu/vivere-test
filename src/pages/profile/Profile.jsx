@@ -58,7 +58,7 @@ function Profile() {
 
     // constrain resizing
     if (newSize > 275 && newSize < window.innerWidth * 0.4) {
-      console.log(newSize);
+      // console.log(newSize);
       setSize(newSize);
     }
   };
@@ -80,7 +80,7 @@ function Profile() {
   }, [isResizing]);
 
   return (
-  console.log(localStorage.getItem("user")),
+  // console.log(localStorage.getItem("user")),
   <div className="ml-48 mt-16 p-5 flex gap-6">
   {/* User Posts Section */}
   

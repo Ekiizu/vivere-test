@@ -12,10 +12,16 @@ export default function PostModal() {
     const [userId, setUserId] = useState(user.id)
     // const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const [postId, setPostId] = useState(null);
 
     const [form, setForm] = useState({
         user_id: userId,
         description: ""
+    })
+
+    const [imageForm, setImageForm] = useState({
+        post_id: "",
+        image_link: ""
     })
 
     // Handle input changes
@@ -26,36 +32,56 @@ export default function PostModal() {
     const handleImageChange = (e) => setImage(e.target.files[0]);
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Log the post data (BACKEND)
-        // console.log({
-        //     // header,
-        //     userId,
-            
-        //     image,
-        // });
-
         console.log(form)
-        axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/posts`, form, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then((res) => {
-            console.log(res.data)
-            // We treat navigating routes like navigating a file system
-            // We've got to go up one level using '../' to get back to /doctors/{id} from here
-            // (we're currently at /doctors/create)                
-            // navigate(`../${res.data.id}`, {relative: 'path'})
-        })
-        .catch((err) => {
-            console.error(err)
-        })
+
+        const formData = new FormData();
+        formData.append("image_link", image);
         
+        try {
+            const post = await axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/posts`, form, {
+                                    headers: {
+                                        Authorization: `Bearer ${token}`
+                                    }
+                                })
+                                .then((res) => {
+                                    // console.log(res.data)
+                                    formData.append("post_id", res.data.data.id);
+                                    // We treat navigating routes like navigating a file system
+                                    // We've got to go up one level using '../' to get back to /doctors/{id} from here
+                                    // (we're currently at /doctors/create)                
+                                    // navigate(`../${res.data.id}`, {relative: 'path'})
+                                })
+                                .catch((err) => {
+                                    console.error(err)
+                                })
+
+            console.log(formData.getAll("image_link"));
+                                
+            const postImage = await axios.post(`https://viverebackend-main-girysq.laravel.cloud/api/images`, formData, {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                    "Content-Type": "multipart/form-data"
+                                }
+                            })
+                            .then((res) => {
+                                console.log(res.data)
+                                // We treat navigating routes like navigating a file system
+                                // We've got to go up one level using '../' to get back to /doctors/{id} from here
+                                // (we're currently at /doctors/create)                
+                                // navigate(`../${res.data.id}`, {relative: 'path'})
+                            })
+                            .catch((err) => {
+                                console.error(err)
+                            })
+        }
+        catch (e) {
+            console.error('Something went wrong', e)
+        } 
        
-        console.log("Post has been sent to Mars!");
+        // console.log("Post has been sent to Mars!");
         
         // Close the modal after submission
         document.getElementById("my_modal_3").close();
@@ -94,25 +120,7 @@ export default function PostModal() {
                         >
                             ✕
                         </button>
-
-                        {/* Header input
-                        <h3 className="font-bold text-lg">Create a Post! ✮⋆˙</h3>
-                        <input
-                            type="text"
-                            className="input input-bordered w-full mt-4"
-                            placeholder="Title"
-                            value={header}
-                            onChange={handleHeaderChange}
-                            required
-                        /> */}
-                        
-                        {/* Body input */}
-                        {/* <textarea
-                            className="textarea-lg textarea-bordered w-full mt-4"
-                            placeholder="Share your thoughts!"
-                            onChange={handleChange}
-                            required
-                        /> */}
+                    
                         <input
                             type="text"
                             name="description"
