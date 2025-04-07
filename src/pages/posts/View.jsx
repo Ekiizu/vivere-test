@@ -17,8 +17,8 @@ function ViewPost() {
 
   const [post, setPost] = useState(null)
   const [postImages, setPostImages] = useState(null)
-  const [comments, setComments] = useState(null)
-  const [replies, setReplies] = useState (null)
+  const [comments, setComments] = useState()
+  const [replies, setReplies] = useState ([])
 
   const navigate = useNavigate();
 
@@ -39,29 +39,58 @@ function ViewPost() {
       .catch(err => console.log(err))
   }, [])
     
-  useEffect(() => {
-    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(res => {
-        console.log(res.data.data)
-        setComments(res.data.data.filter((comment) => (comment.post_id == id)))
-        return axios.get (`https://viverebackend-main-girysq.laravel.cloud/api/replies`, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          })
+  const fetchComments = async () => {
+    try {
+      const commentFetch = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments?post_id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
-      .then(repRes => {
-        console.log(repRes.data.data)
-        setReplies(repRes.data.data)
+        .then(res => {
+          console.log(res.data.data)
+          setComments(res.data.data)
+      })
+          .catch(err => console.log("Error fetching comments:", err))
+          
       }
 
-      )
-      .catch(err => console.log(err))
+    catch (error) {
+      console.error("Error fetching comments and replies:", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchComments()
   }, [])
+
+  // holy react moment | This only runs when comments is updated
+  useEffect(() => {
+    const replyFetch = async () => {
+      for (let _c of comments) {
+      // console.log(_c)
+      try {
+        let res = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/replies?comment_id=${_c.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+          .then(res => {
+            // console.log(res.data.data)
+            setReplies(prevReplies => [...prevReplies, ...res.data.data])
+        })
+      }
+      catch (error) {
+        console.log("Error fetching replies", error)
+      }
+      }
+    }
+
+  if (comments != null && comments.length > 0) {
+    replyFetch()
+  }
+
+  }, [comments])
+
   
   const handleDelete = async (postId) => {
 
@@ -69,7 +98,6 @@ function ViewPost() {
 
   if(post != null ) {
     return post && (
-
       // this is to confine the post area within the right space
       <div className="ml-48 mt-16 flex-1 p-5"> 
       <div className="flex-1 border-2 border-primary p-4 rounded">
@@ -114,7 +142,7 @@ function ViewPost() {
             {comments != null && <h1 className="text-xl font-bold mx-8 text-primary">{comments.length} comments</h1>}
 
 
-            {comments != null && 
+            {comments != null && post != null &&
             comments.map(({id, body, user_id, post_id}, j) => {
                 if(comments[j].post_id == post.id) {
                     return(
@@ -123,7 +151,7 @@ function ViewPost() {
                         {replies != null &&
                         replies.map(({id, user_id, body, comment_id}, i) => {
                             if(replies[i].comment_id == comments[j].id) {
-                                // console.log(replies[i])
+                                console.log(replies[i])
                                 return (
                                     <div className="ml-16 py-2 ">
                                     <Reply replyInfo={replies[i]} />
@@ -144,7 +172,7 @@ function ViewPost() {
   }
   else {
     return (
-      <div class="loader"></div>
+      <div class=""></div>
     )
   }
 }

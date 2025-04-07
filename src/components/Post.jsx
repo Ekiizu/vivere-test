@@ -177,8 +177,43 @@ const Post = ({ postInfo , postStyle }) => {
     )
     }
     else {
+      
         return (
-          <div class="loader"></div>
+          <div id="post" className="">
+                    {Math.random() > 0.5 &&
+
+        <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
+          
+            <div className="skeleton m-2 w-full h-[400px] rounded object-cover col-span-1"></div>
+            <div className="skeleton m-2 w-full h-[400px] rounded object-cover col-span-1"></div>
+        </div>
+          }
+        <div className="flex p-8 ">
+        <div className="skeleton h-[64px] w-[64px] shrink-0 rounded-full"></div>
+
+        <div className="flex flex-col gap-4">
+          <div className="skeleton h-4 w-20"></div>
+          <div className="skeleton h-4 w-28"></div>
+        </div>
+            
+        </div>
+            {/* buttons for like, comment, etc. */}
+            {/* <div id="likeButton" class="flex justify-end">
+            <button id="likeButton" class="btn mb-4 mr-4">
+              <label id="likeButton" className="swap">
+              <input id="likeButton" type="checkbox" className="btn mb-4 mr-4"/>
+              <div id="likeButton" className="swap-on">ON</div>
+              <div id="likeButton" className="swap-off">OFF</div>
+            </label>            
+            </button>
+            </div> */}
+
+            
+
+          <div className="flex justify-end p-4">
+          <LikeButton info={info} />
+          </div>
+        </div>
         )
     }
 }

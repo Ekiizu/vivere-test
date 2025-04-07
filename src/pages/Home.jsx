@@ -22,7 +22,7 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
   };
 
   useEffect(() => {
-    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts?page=3`, {
+    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts?page=1`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
