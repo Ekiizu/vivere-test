@@ -6,31 +6,32 @@ import ProfileComponent from "../../components/ProfileComponent.jsx"
 import Edit from "./Edit.jsx";
 
 
-function Profile() {
+function Profile( {}) {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null); // Store user data
+
+  const user = JSON.parse(localStorage.getItem("user")) // logged in user details
 
   const [size, setSize] = useState(450);
   const [isResizing, setIsResizing] = useState(false);
   const [startX, setStartX] = useState(0); // Track initial mouse position
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {Users
-        const response = await fetch("https://viverebackend-main-girysq.laravel.cloud/", {
-          credentials: "include", // Include cookies for auth
-        });
-        if (!response.ok) throw new Error("Failed to fetch user data");
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {Users
+  //       const response = await fetch("https://viverebackend-main-girysq.laravel.cloud/", {
+  //         credentials: "include", // Include cookies for auth
+  //       });
+  //       if (!response.ok) throw new Error("Failed to fetch user data");
 
-        const data = await response.json();
-        setUser(data); // user data
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
+  //       const data = await response.json();
+  //       setUser(data); // user data
+  //     } catch (error) {
+  //       console.error("Error fetching user:", error);
+  //     }
+  //   };
 
 
-  }, []);
+  // }, []);
 
   const images = [
     "images/ozzy.jpg",
@@ -85,7 +86,7 @@ function Profile() {
   {/* User Posts Section */}
   
 
-  <Card initialSize={size} isProfile={true}></Card>
+  <Card initialSize={size} isProfile={true} userId={user.id}></Card>
   
       {/* Resizer Divider */}
       <div

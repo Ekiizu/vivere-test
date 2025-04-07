@@ -197,6 +197,6 @@ iframe {
   transition: transform 0.3s ease-in-out; 
 }
 
-.grid img:hover {
+/* .grid img:hover {
   transform: scale(1.05); 
-}
+} */

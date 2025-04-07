@@ -32,10 +32,12 @@ function App() {
             {/* <Route path="/profile/:id" element={<Profile />} /> */} 
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<Edit />} />
+            
             <Route path="/posts/:id" element={<PostView />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
              <Route path="/profile/:id" element={<ViewProfile />} />
+             
           </Routes>
         </div>
       </div>
