@@ -93,8 +93,8 @@
   display: block;
 }
 
-.masonry-grid {
-  column-count: 1;
+.grid {
+  column-count: 3;
   column-gap: 10px;
   width: 100%;
 }
@@ -125,6 +125,8 @@
   border-radius: 8px;
   display: block;
 }
+
+
 /* from https://css-loaders.com/nature/ */
 /* incrediblle collection of loading animations !! */
 
@@ -180,4 +182,21 @@ iframe {
   max-width: 100%;
   border: none;
   margin-bottom: 1rem;
+}
+
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 16px; 
+}
+
+.grid img {
+  border-radius: 8px; 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.grid img:hover {
+  transform: scale(1.05); 
 }
