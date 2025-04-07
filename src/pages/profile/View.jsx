@@ -101,7 +101,7 @@ const ViewProfile = () => {
   return (
     <div className="ml-48 mt-16 p-5 flex gap-6">
       {/* User Posts Section */}
-      <Card initialSize={size} isProfile={true} posts={posts} />
+      <Card initialSize={size} isProfile={true} userId={id} posts={posts} />
 
       {/* Resizer Divider */}
       <div

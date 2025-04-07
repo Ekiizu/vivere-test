@@ -133,7 +133,7 @@ const Post = ({ postInfo , postStyle }) => {
 
 
     // console.log(images)
-    if (  poster != null && postImages != null && hasLiked != null) {
+    if ( poster != null && postImages != null && hasLiked != null) {
     return (
         <div id="post" className="">
         <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >

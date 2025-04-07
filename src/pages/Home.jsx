@@ -63,20 +63,20 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
   
     return (
       <div className="ml-48 mt-16 flex-1 p-5">
-        <div className="masonry-grid">
-          {posts.map((post, index) => (
-            <div
-              key={post.id}
-              className="masonry-item relative group overflow-hidden rounded-lg"
-              onClick={() => {
-                navigate(`/posts/${post.id}`, { replace: false });
-              }}
-            >
-              <Post postInfo={post} postStyle={"masonry"}/>
-            </div>
-          ))}
-        </div>
+      <div className="grid">
+        {posts.map((post, index) => (
+          <div
+            key={post.id}
+            className="grid grid-cols-2 md:grid-cols-3 gap-4"
+            onClick={() => {
+              navigate(`/posts/${post.id}`, { replace: false });
+            }}
+          >
+            <Post postInfo={post} postStyle={"masonry"}/>
+          </div>
+        ))}
       </div>
+    </div>
     );
   }
 } else {
