@@ -111,29 +111,29 @@ const Post = ({ postInfo , postStyle }) => {
 
 
       // Render only images for masonry layout
-    if (postStyle === "masonry" && postImages != null) {
-      return (
+    // if (postStyle === "masonry" && postImages != null) {
+    //   return (
         
-        <div className="masonry-item">
+    //     <div className="masonry-item">
           
-          {postImages.map(({ id, image_link }) => (
-            <img
-              key={id}
-              src={image_link}
-              alt="Post"
-              className="object-cover w-full rounded-lg transform transition duration-300 ease-in-out group-hover:scale-105"
+    //       {postImages.map(({ id, image_link }) => (
+    //         <img
+    //           key={id}
+    //           src={image_link}
+    //           alt="Post"
+    //           className="object-cover w-full rounded-lg transform transition duration-300 ease-in-out group-hover:scale-105"
 
               
-            />
-          ))}
-        </div>
+    //         />
+    //       ))}
+    //     </div>
         
-      );
-    }
+    //   );
+    // }
 
 
     // console.log(images)
-    if ( postStyle === "full" && poster != null && postImages != null && hasLiked != null) {
+    if (  poster != null && postImages != null && hasLiked != null) {
     return (
         <div id="post" className="">
         <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
