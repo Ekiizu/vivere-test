@@ -73,7 +73,7 @@ function ViewPost() {
       // this is to confine the post area within the right space
       <div className="ml-48 mt-16 flex-1 p-5"> 
       <div className="flex-1 border-2 border-primary p-4 rounded">
-            <div className="border-secondary m-5">
+            <div className=" border-2 rounded border-secondary m-5">
             
               <div className="flex justify-end dropdown dropdown-bottom dropdown-end">
               <div tabIndex={0} role="button" className="btn bg-base-300 m-1">

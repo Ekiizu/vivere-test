@@ -11,9 +11,9 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
   const token = localStorage.getItem("token")
 
   const [posts, setPosts] = useState(null)
-  const [postImages, setPostImages] = useState(null)
+  // const [postImages, setPostImages] = useState(null)
 
-  const [feedDisplay, setFeedDisplay] = useState(null)
+  // const [feedDisplay, setFeedDisplay] = useState(null)
 
   const navigate = useNavigate();
 
@@ -63,13 +63,13 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
   
     return (
       <div className="ml-48 mt-16 flex-1 p-5">
-      <div className="grid">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {posts.map((post, index) => (
           <div
             key={post.id}
-            className="grid grid-cols-2 md:grid-cols-3 gap-4"
+            className=""
             onClick={() => {
-              navigate(`/posts/${post.id}`, { replace: false });
+              navigate(`/posts/${post.id}`);
             }}
           >
             <Post postInfo={post} postStyle={"masonry"}/>
