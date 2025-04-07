@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/profile/Profile";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import PostView from "./pages/posts/view";
+import PostView from "./pages/posts/View";
 import ViewProfile from "./pages/profile/View";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
