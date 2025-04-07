@@ -59,15 +59,13 @@ function Home({ postStyle }) { //added as a prop to toggle the post styles
     );
   }
   else if (postStyle === "masonry") {
-
-  
     return (
       <div className="ml-48 mt-16 flex-1 p-5">
-      <div className="grid">
+      <div className="grid md:grid-cols-5 gap-0">
         {posts.map((post, index) => (
           <div
             key={post.id}
-            className="grid grid-cols-2 md:grid-cols-3 gap-4"
+            className="grid-cols-1 "
             onClick={() => {
               navigate(`/posts/${post.id}`, { replace: false });
             }}

@@ -6,7 +6,7 @@ import "../App.css";
 
 // This is just the text and info for the posts. Images will be added in the home page. To avoid unnecessary API calls
 const Post = ({ postInfo , postStyle }) => {
-    const info = postInfo || {} ; //THIS WAS THE ISSUE
+    const info = postInfo || {} ; //THIS WAS THE ISSUE the issue for what???
     const user = JSON.parse(localStorage.getItem("user")) // logged in user details
     const token = localStorage.getItem("token")
 
@@ -136,15 +136,21 @@ const Post = ({ postInfo , postStyle }) => {
     if ( poster != null && postImages != null && hasLiked != null) {
     return (
         <div id="post" className="">
-        <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
-              {postImages.map(({id, image_link, post_id}, k) => {
-                if(postImages[k].post_id == info.id) {
-                  return(
-                    <img loading="lazy" src={`${postImages[k].image_link}`} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
-                  )
-                }
-              })}
+        {postStyle == "masonry" && postImages[0] != null
+        ? <div className="mx-0.5 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
+        <img loading="lazy" src={`${postImages[0].image_link}`} className="m-2 w-full h-full object-cover col-span-2"/> 
         </div>
+        :
+        <div className="mx-8 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
+            {postImages.map(({id, image_link, post_id}, k) => {
+              if(postImages[k].post_id == info.id) {
+                return(
+                  <img loading="lazy" src={`${postImages[k].image_link}`} className="m-2 w-full h-[400px] rounded object-cover col-span-1"/>
+                )
+              }
+            })} 
+        </div>
+        }
         <div className="flex p-8 ">
             <div className="pr-3">
                 <img loading="lazy" src={`https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=${info.user_id}&radius=25&backgroundColor=b6e3f4,ffd5dc,c0aede,ffffff,d1d4f9,ffdfbf&backgroundType=gradientLinear&frecklesProbability=25`} width="64" height="64"/> 
@@ -170,7 +176,7 @@ const Post = ({ postInfo , postStyle }) => {
 
             
 
-          <div className="flex justify-end p-4">
+          <div className="flex justify-end p-2">
           <LikeButton info={info} />
           </div>
         </div>
@@ -210,9 +216,9 @@ const Post = ({ postInfo , postStyle }) => {
 
             
 
-          <div className="flex justify-end p-4">
+          {/* <div className="flex justify-end p-4">
           <LikeButton info={info} />
-          </div>
+          </div> */}
         </div>
         )
     }

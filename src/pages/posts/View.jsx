@@ -93,7 +93,16 @@ function ViewPost() {
 
   
   const handleDelete = async (postId) => {
+    axios.delete(`https://viverebackend-main-girysq.laravel.cloud/api/posts/${postId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
+      console.log(res)
 
+    }).catch((err) => {
+      console.error(err)
+    })
   }
 
   if(post != null ) {
