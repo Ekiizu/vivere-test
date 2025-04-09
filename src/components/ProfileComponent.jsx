@@ -63,22 +63,33 @@ const ProfileComponent = ({ userProfile }) => {
   //   fetchGif("");
   // }, []);
 
+  console.log(user.pfp)
+
   return (
     <div className="max-w-2xl mx-auto rounded-sm overflow-hidden">
       {/* Banner */}
       <div className="relative">
-        {banner != null 
+        {user.banner_url != null 
         ? <img src={user.banner_url} alt="Banner" className="h-48 w-full object-cover" />
         : <div className="h-48 w-full object-cover " style={{
           background: `${user.colour1}`,
         }} />
         }
         {/* <img src={user.banner_url} alt="Banner" className="h-48 w-full object-cover" /> */}
+        {user.pfp != null
+        ? 
+        <img
+          src={user.pfp}
+          alt="User Profile"
+          className="w-24 h-24 rounded-full object-cover border-4 border-accent absolute left-1/2 transform -translate-x-1/2 -bottom-12 shadow-md ml-50"
+        />
+        :
         <img
           src="images/ozzy.jpg"
           alt="User Profile"
           className="w-24 h-24 rounded-full object-cover border-4 border-accent absolute left-1/2 transform -translate-x-1/2 -bottom-12 shadow-md ml-50"
         />
+        }
       </div>
 
       <div

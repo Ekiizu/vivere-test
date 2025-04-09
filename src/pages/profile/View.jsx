@@ -97,6 +97,7 @@ const ViewProfile = () => {
         };
       }, [isResizing]);
     
+    console.log(userProfile)
 
   return (
     <div className="ml-48 mt-16 p-5 flex gap-6">
