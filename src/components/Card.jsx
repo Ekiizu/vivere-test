@@ -14,7 +14,7 @@ const Card = ({ initialSize, isProfile, userId}) => {
   // Fetch posts for the current user
   useEffect(() => {
     axios
-      .get(`https://viverebackend-main-girysq.laravel.cloud/api/posts?user_id=${userId}`, {
+      .get(`https://viverebackend-main-girysq.laravel.cloud/api/posts-images?user_id=${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,14 +37,21 @@ const Card = ({ initialSize, isProfile, userId}) => {
             className="relative group overflow-hidden rounded-lg cursor-pointer"
             onClick={() => navigate(`/posts/${post.id}`)} 
           >
+            {post.images[0] != null 
+            ?
             <img
               className="object-cover w-full h-full rounded-lg transform transition duration-300 ease-in-out group-hover:scale-105"
-              src={post.image_link} 
+              src={post.images[0].image_link} 
               alt={`Post ${post.id}`}
             />
+            :
+            <div>
+              <p>{post.description}</p>
+            </div>
+            }
             <div
               className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center text-white text-lg font-bold
-              opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
+              opacity-0 group-hover:opacity-50 transition-opacity duration-300 backdrop-blur-sm"
             >
               {post.title } 
             </div>

@@ -28,7 +28,7 @@ function ViewPost() {
 
 //   get post by id
   useEffect(() => {
-    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts/${id}`, {
+    axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/posts-comments-replies/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -39,57 +39,57 @@ function ViewPost() {
       .catch(err => console.log(err))
   }, [])
     
-  const fetchComments = async () => {
-    try {
-      const commentFetch = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments?post_id=${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-        .then(res => {
-          console.log(res.data.data)
-          setComments(res.data.data)
-      })
-          .catch(err => console.log("Error fetching comments:", err))
+  // const fetchComments = async () => {
+  //   try {
+  //     const commentFetch = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/comments?post_id=${id}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //       .then(res => {
+  //         console.log(res.data.data)
+  //         setComments(res.data.data)
+  //     })
+  //         .catch(err => console.log("Error fetching comments:", err))
           
-      }
+  //     }
 
-    catch (error) {
-      console.error("Error fetching comments and replies:", error)
-    }
-  }
+  //   catch (error) {
+  //     console.error("Error fetching comments and replies:", error)
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchComments()
-  }, [])
+  // useEffect(() => {
+  //   fetchComments()
+  // }, [])
 
-  // holy react moment | This only runs when comments is updated
-  useEffect(() => {
-    const replyFetch = async () => {
-      for (let _c of comments) {
-      // console.log(_c)
-      try {
-        let res = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/replies?comment_id=${_c.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-          .then(res => {
-            // console.log(res.data.data)
-            setReplies(prevReplies => [...prevReplies, ...res.data.data])
-        })
-      }
-      catch (error) {
-        console.log("Error fetching replies", error)
-      }
-      }
-    }
+  // // holy react moment | This only runs when comments is updated
+  // useEffect(() => {
+  //   const replyFetch = async () => {
+  //     for (let _c of comments) {
+  //     // console.log(_c)
+  //     try {
+  //       let res = await axios.get(`https://viverebackend-main-girysq.laravel.cloud/api/replies?comment_id=${_c.id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       })
+  //         .then(res => {
+  //           // console.log(res.data.data)
+  //           setReplies(prevReplies => [...prevReplies, ...res.data.data])
+  //       })
+  //     }
+  //     catch (error) {
+  //       console.log("Error fetching replies", error)
+  //     }
+  //     }
+  //   }
 
-  if (comments != null && comments.length > 0) {
-    replyFetch()
-  }
+  // if (comments != null && comments.length > 0) {
+  //   replyFetch()
+  // }
 
-  }, [comments])
+  // }, [comments])
 
   
   const handleDelete = async (postId) => {
@@ -148,22 +148,22 @@ function ViewPost() {
               
             </div>
 
-            {comments != null && <h1 className="text-xl font-bold mx-8 text-primary">{comments.length} comments</h1>}
+            {post.comments != null && <h1 className="text-xl font-bold mx-8 text-primary">{post.comments.length} comments</h1>}
 
 
-            {comments != null && post != null &&
-            comments.map(({id, body, user_id, post_id}, j) => {
-                if(comments[j].post_id == post.id) {
+            {post.comments != null && post != null &&
+            post.comments.map(({id, body, user_id, post_id}, j) => {
+                if(post.comments[j].post_id == post.id) {
                     return(
                         <div className="m-5 px-8 py-4 border-2">
-                        <Comment commentInfo={comments[j]} />
-                        {replies != null &&
-                        replies.map(({id, user_id, body, comment_id}, i) => {
-                            if(replies[i].comment_id == comments[j].id) {
-                                console.log(replies[i])
+                        <Comment commentInfo={post.comments[j]} />
+                        {post.comments[j].replies != null &&
+                        post.comments[j].replies.map(({id, user_id, body, comment_id}, i) => {
+                            if(post.comments[j].replies[i].comment_id == post.comments[j].id) {
+                                console.log(post.comments[j].replies[i])
                                 return (
                                     <div className="ml-16 py-2 ">
-                                    <Reply replyInfo={replies[i]} />
+                                    <Reply replyInfo={post.comments[j].replies[i]} />
                                     </div>
                                 )
                             }
