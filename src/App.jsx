@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./context/useAuth";
 import Edit from "./pages/profile/Edit";
+import TenorSearch from "./components/TenorSearch";
 
 function App() {
   const location = useLocation();
@@ -36,7 +37,8 @@ function App() {
             <Route path="/posts/:id" element={<PostView />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
-             <Route path="/profile/:id" element={<ViewProfile />} />
+            <Route path="/profile/:id" element={<ViewProfile />} />
+            <Route path="/gifTest" element={<TenorSearch />} />
              
           </Routes>
         </div>
