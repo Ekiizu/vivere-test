@@ -161,6 +161,10 @@ const Post = ({ postInfo , postStyle }) => {
                 </Link>
                 <p>{info.description}</p>
             </div>
+
+            <div className="ml-auto">
+          <LikeButton info={info} />
+          </div>
             
         </div>
             {/* buttons for like, comment, etc. */}
@@ -173,12 +177,6 @@ const Post = ({ postInfo , postStyle }) => {
             </label>            
             </button>
             </div> */}
-
-            
-
-          <div className="flex justify-end p-2">
-          <LikeButton info={info} />
-          </div>
         </div>
     )
     }
